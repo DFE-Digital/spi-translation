@@ -3,7 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.960
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dfe.Spi.Translation.FunctionApp", "Dfe.Spi.Translation.FunctionApp\Dfe.Spi.Translation.FunctionApp.csproj", "{500F4452-B48F-4760-9B09-1945D298B61C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dfe.Spi.Translation.FunctionApp", "Dfe.Spi.Translation.FunctionApp\Dfe.Spi.Translation.FunctionApp.csproj", "{500F4452-B48F-4760-9B09-1945D298B61C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deploy", "Deploy", "{32E1B920-CF1C-40EC-8CED-C4E281A5FE04}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{3CD4FDEE-8061-4AD4-BB1C-781EA1585330}"
+	ProjectSection(SolutionItems) = preProject
+		..\pipelines\azure-pipelines.yml = ..\pipelines\azure-pipelines.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Release", "Release", "{6270936C-7B0F-4B7C-9225-6FDB7CCC2B85}"
+	ProjectSection(SolutionItems) = preProject
+		..\azure\template.json = ..\azure\template.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,6 +30,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3CD4FDEE-8061-4AD4-BB1C-781EA1585330} = {32E1B920-CF1C-40EC-8CED-C4E281A5FE04}
+		{6270936C-7B0F-4B7C-9225-6FDB7CCC2B85} = {32E1B920-CF1C-40EC-8CED-C4E281A5FE04}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B8F406CF-07E0-4E74-BC64-B1CB6A0FFDB4}
