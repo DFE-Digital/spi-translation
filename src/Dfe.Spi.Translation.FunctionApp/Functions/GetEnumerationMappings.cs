@@ -4,6 +4,7 @@
     using System.Threading.Tasks;
     using Dfe.Spi.Common.Logging.Definitions;
     using Dfe.Spi.Translation.Application.Definitions.Processors;
+    using Dfe.Spi.Translation.Application.Models.Processors;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Azure.WebJobs;
@@ -62,8 +63,13 @@
             this.loggerWrapper.SetContext(headers);
 
             // TODO: Schema validation.
-            await this.getEnumerationMappingsProcessor.GetEnumerationMappingsAsync()
-                .ConfigureAwait(false);
+            // TODO: Populate this...
+            GetEnumerationMappingsRequest getEnumerationMappingsRequest = null;
+
+            GetEnumerationMappingsResponse getEnumerationMappingsResponse =
+                await this.getEnumerationMappingsProcessor.GetEnumerationMappingsAsync(
+                    getEnumerationMappingsRequest)
+                    .ConfigureAwait(false);
 
             // TODO: Map up the result of the processor here.
             toReturn = new StatusCodeResult(200);

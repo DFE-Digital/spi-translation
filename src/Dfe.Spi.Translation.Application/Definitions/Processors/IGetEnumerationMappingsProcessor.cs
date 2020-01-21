@@ -1,6 +1,7 @@
 ﻿namespace Dfe.Spi.Translation.Application.Definitions.Processors
 {
     using System.Threading.Tasks;
+    using Dfe.Spi.Translation.Application.Models.Processors;
 
     /// <summary>
     /// Describes the operations of the get enumeration mappings processor.
@@ -10,6 +11,13 @@
         /// <summary>
         /// The get enumeration mappings entry method.
         /// </summary>
-        Task GetEnumerationMappingsAsync();
+        /// <param name="getEnumerationMappingsRequest">
+        /// An instance of <see cref="GetEnumerationMappingsRequest" />.
+        /// </param>
+        /// <returns>
+        /// An instance of <see cref="GetEnumerationMappingsResponse" />.
+        /// </returns>
+        Task<GetEnumerationMappingsResponse> GetEnumerationMappingsAsync(
+            GetEnumerationMappingsRequest getEnumerationMappingsRequest);
     }
 }

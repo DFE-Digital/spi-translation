@@ -2,6 +2,7 @@
 {
     using System.Threading.Tasks;
     using Dfe.Spi.Translation.Application.Definitions.Processors;
+    using Dfe.Spi.Translation.Application.Models.Processors;
 
     /// <summary>
     /// Implements <see cref="IGetEnumerationMappingsProcessor" />.
@@ -10,7 +11,8 @@
         : IGetEnumerationMappingsProcessor
     {
         /// <inheritdoc />
-        public Task GetEnumerationMappingsAsync()
+        public Task<GetEnumerationMappingsResponse> GetEnumerationMappingsAsync(
+            GetEnumerationMappingsRequest getEnumerationMappingsRequest)
         {
             throw new System.NotImplementedException();
         }

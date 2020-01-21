@@ -4,6 +4,10 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AzureFunctionsVersion>v2</AzureFunctionsVersion>
   </PropertyGroup>
+  
+  <ItemGroup>
+    <None Remove="Schemas\get-enumeration-mappings-body.json" />
+  </ItemGroup>
 
   <ItemGroup>    
     <!-- Other -->
@@ -29,6 +33,10 @@
   <PropertyGroup>
     <CodeAnalysisRuleSet>..\ca.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Schemas\get-enumeration-mappings-body.json" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Dfe.Spi.Translation.Application\Dfe.Spi.Translation.Application.csproj" />

@@ -1,0 +1,14 @@
+{
+  "properties": {
+    "adapterName": {
+      "type": "string"
+    },
+    "enumerationName": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "adapterName",
+    "enumerationName"
+  ]
+}
