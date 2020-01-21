@@ -5,10 +5,7 @@
     <AzureFunctionsVersion>v2</AzureFunctionsVersion>
   </PropertyGroup>
 
-  <ItemGroup>
-    <!-- Dfe.Spi.* -->
-    <PackageReference Include="Dfe.Spi.Common.Logging" Version="1.0.9" />
-    
+  <ItemGroup>    
     <!-- Other -->
     <PackageReference Include="NJsonSchema" Version="10.0.28" />
 
@@ -20,6 +17,22 @@
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" PrivateAssets="All" />
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8" PrivateAssets="All" />
   </ItemGroup>
+
+  <PropertyGroup>
+    <DocumentationFile>Dfe.Spi.Translation.FunctionApp.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="..\stylecop.json" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <CodeAnalysisRuleSet>..\ca.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Dfe.Spi.Translation.Application\Dfe.Spi.Translation.Application.csproj" />
+  </ItemGroup>
   
   <ItemGroup>
     <None Update="host.json">
@@ -30,17 +43,5 @@
       <CopyToPublishDirectory>Never</CopyToPublishDirectory>
     </None>
   </ItemGroup>
-
-  <ItemGroup>
-    <AdditionalFiles Include="..\stylecop.json" />
-  </ItemGroup>
-
-  <PropertyGroup>
-    <CodeAnalysisRuleSet>..\ca.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-
-  <PropertyGroup>
-    <DocumentationFile>Dfe.Spi.Translation.FunctionApp.xml</DocumentationFile>
-  </PropertyGroup>
 
 </Project>

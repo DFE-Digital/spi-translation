@@ -4,6 +4,8 @@
     using System.Diagnostics.CodeAnalysis;
     using Dfe.Spi.Common.Logging;
     using Dfe.Spi.Common.Logging.Definitions;
+    using Dfe.Spi.Translation.Application.Definitions.Processors;
+    using Dfe.Spi.Translation.Application.Processors;
     using Microsoft.Azure.Functions.Extensions.DependencyInjection;
     using Microsoft.Azure.WebJobs.Logging;
     using Microsoft.Extensions.DependencyInjection;
@@ -27,9 +29,10 @@
             IServiceCollection serviceCollection =
                 functionsHostBuilder.Services;
 
+            AddLogging(serviceCollection);
+
             serviceCollection
-                .AddScoped<ILogger>(CreateILogger)
-                .AddScoped<ILoggerWrapper, LoggerWrapper>();
+                .AddScoped<IGetEnumerationMappingsProcessor, GetEnumerationMappingsProcessor>();
         }
 
         private static ILogger CreateILogger(IServiceProvider serviceProvider)
@@ -45,6 +48,13 @@
             toReturn = loggerFactory.CreateLogger(categoryName);
 
             return toReturn;
+        }
+
+        private static void AddLogging(IServiceCollection serviceCollection)
+        {
+            serviceCollection
+                .AddScoped<ILogger>(CreateILogger)
+                .AddScoped<ILoggerWrapper, LoggerWrapper>();
         }
     }
 }
