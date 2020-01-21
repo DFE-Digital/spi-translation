@@ -1,22 +1,29 @@
 ﻿namespace Dfe.Spi.Translation.FunctionApp.Functions
 {
+    using System;
+    using Dfe.Spi.Common.Logging.Definitions;
     using Microsoft.AspNetCore.Http;
     using Microsoft.Azure.WebJobs;
     using Microsoft.Azure.WebJobs.Extensions.Http;
-    using Microsoft.Extensions.Logging;
 
     /// <summary>
     /// Entry class for the <c>get-translation</c> function.
     /// </summary>
     public class GetTranslation
     {
+        private readonly ILoggerWrapper loggerWrapper;
+
         /// <summary>
         /// Initialises a new instance of the <see cref="GetTranslation" />
         /// class.
         /// </summary>
-        public GetTranslation()
+        /// <param name="loggerWrapper">
+        /// An instance of type <see cref="ILoggerWrapper" />.
+        /// </param>
+        public GetTranslation(
+            ILoggerWrapper loggerWrapper)
         {
-            // Nothing for now.
+            this.loggerWrapper = loggerWrapper;
         }
 
         /// <summary>
@@ -25,20 +32,25 @@
         /// <param name="httpRequest">
         /// An instance of <see cref="HttpContext" />.
         /// </param>
-        /// <param name="logger">
-        /// An instance of type <see cref="ILogger" />.
-        /// </param>
         [FunctionName("get-translation")]
-        public static void Run(
+        public void Run(
             [HttpTrigger(AuthorizationLevel.Function, "POST", Route = null)]
-            HttpRequest httpRequest,
-            ILogger logger)
+            HttpRequest httpRequest)
         {
-            logger.LogDebug(
+            if (httpRequest == null)
+            {
+                throw new ArgumentNullException(nameof(httpRequest));
+            }
+
+            IHeaderDictionary headers = httpRequest.Headers;
+
+            this.loggerWrapper.SetContext(headers);
+
+            this.loggerWrapper.Debug(
                 "TEST DEBUG MESSAGE, to see if the debug messages are " +
                 "logging to app insights.");
 
-            logger.LogInformation(
+            this.loggerWrapper.Info(
                 "TEST INFO MESSAGE, to see if the info messages are " +
                 "logging to app insights.");
         }
