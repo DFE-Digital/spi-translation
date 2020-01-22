@@ -2,6 +2,8 @@
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
+    using Dfe.Spi.Common.Http.Server;
+    using Dfe.Spi.Common.Http.Server.Definitions;
     using Dfe.Spi.Common.Logging;
     using Dfe.Spi.Common.Logging.Definitions;
     using Dfe.Spi.Translation.Application.Definitions.Processors;
@@ -17,6 +19,8 @@
     [ExcludeFromCodeCoverage]
     public class Startup : FunctionsStartup
     {
+        private const string SystemErrorIdentifier = "T";
+
         /// <inheritdoc />
         public override void Configure(
             IFunctionsHostBuilder functionsHostBuilder)
@@ -31,7 +35,13 @@
 
             AddLogging(serviceCollection);
 
+            HttpErrorBodyResultProvider httpErrorBodyResultProvider =
+                new HttpErrorBodyResultProvider(
+                    SystemErrorIdentifier,
+                    HttpErrorMessages.ResourceManager);
+
             serviceCollection
+                .AddSingleton<IHttpErrorBodyResultProvider>(httpErrorBodyResultProvider)
                 .AddScoped<IGetEnumerationMappingsProcessor, GetEnumerationMappingsProcessor>();
         }
 
