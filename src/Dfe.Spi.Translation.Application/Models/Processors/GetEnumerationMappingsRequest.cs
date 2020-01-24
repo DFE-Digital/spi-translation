@@ -15,9 +15,9 @@
     {
         /// <summary>
         /// Gets or sets an instance of
-        /// <see cref="Domain.Models.EnumerationsReference" />.
+        /// <see cref="Domain.Models.EnumerationsKey" />.
         /// </summary>
-        public EnumerationsReference EnumerationsReference
+        public EnumerationsKey EnumerationsKey
         {
             get;
             set;

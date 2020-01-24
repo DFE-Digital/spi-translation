@@ -6,7 +6,11 @@
     using Dfe.Spi.Common.Http.Server.Definitions;
     using Dfe.Spi.Common.Logging;
     using Dfe.Spi.Common.Logging.Definitions;
+    using Dfe.Spi.Translation.Application.Caches;
+    using Dfe.Spi.Translation.Application.Definitions.Caches;
+    using Dfe.Spi.Translation.Application.Definitions.Factories;
     using Dfe.Spi.Translation.Application.Definitions.Processors;
+    using Dfe.Spi.Translation.Application.Factories;
     using Dfe.Spi.Translation.Application.Processors;
     using Microsoft.Azure.Functions.Extensions.DependencyInjection;
     using Microsoft.Azure.WebJobs.Logging;
@@ -34,6 +38,8 @@
                 functionsHostBuilder.Services;
 
             AddLogging(serviceCollection);
+            AddCaches(serviceCollection);
+            AddFactories(serviceCollection);
 
             HttpErrorBodyResultProvider httpErrorBodyResultProvider =
                 new HttpErrorBodyResultProvider(
@@ -43,6 +49,25 @@
             serviceCollection
                 .AddSingleton<IHttpErrorBodyResultProvider>(httpErrorBodyResultProvider)
                 .AddScoped<IGetEnumerationMappingsProcessor, GetEnumerationMappingsProcessor>();
+        }
+
+        private static void AddFactories(IServiceCollection serviceCollection)
+        {
+            serviceCollection
+                .AddScoped<IMappingsResultCacheManagerFactory, MappingsResultCacheManagerFactory>();
+        }
+
+        private static void AddCaches(IServiceCollection serviceCollection)
+        {
+            serviceCollection
+                .AddScoped<IMappingsResultCache, MappingsResultCache>();
+        }
+
+        private static void AddLogging(IServiceCollection serviceCollection)
+        {
+            serviceCollection
+                .AddScoped<ILogger>(CreateILogger)
+                .AddScoped<ILoggerWrapper, LoggerWrapper>();
         }
 
         private static ILogger CreateILogger(IServiceProvider serviceProvider)
@@ -58,13 +83,6 @@
             toReturn = loggerFactory.CreateLogger(categoryName);
 
             return toReturn;
-        }
-
-        private static void AddLogging(IServiceCollection serviceCollection)
-        {
-            serviceCollection
-                .AddScoped<ILogger>(CreateILogger)
-                .AddScoped<ILoggerWrapper, LoggerWrapper>();
         }
     }
 }
