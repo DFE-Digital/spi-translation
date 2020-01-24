@@ -1,14 +1,23 @@
 {
+  "type": "object",
   "properties": {
-    "adapterName": {
-      "type": "string"
-    },
-    "enumerationName": {
-      "type": "string"
+    "enumerationsReference": {
+      "type": "object",
+      "properties": {
+        "adapterName": {
+          "type": "string"
+        },
+        "enumerationName": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "adapterName",
+        "name"
+      ]
     }
   },
   "required": [
-    "adapterName",
-    "enumerationName"
+    "enumerationsReference"
   ]
 }

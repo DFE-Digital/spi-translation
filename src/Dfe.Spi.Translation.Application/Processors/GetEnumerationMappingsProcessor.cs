@@ -16,6 +16,9 @@
             GetEnumerationMappingsRequest getEnumerationMappingsRequest,
             CancellationToken cancellationToken)
         {
+            // TODO:
+            // 1. Check the CacheManager for the translation.
+            // 2. If it doesn't exist, look it up from Table Storage.
             throw new System.NotImplementedException();
         }
     }

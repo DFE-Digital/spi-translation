@@ -4,6 +4,7 @@
     using System.Threading;
     using Dfe.Spi.Common.Models;
     using Dfe.Spi.Translation.Application.Definitions.Processors;
+    using Dfe.Spi.Translation.Domain.Models;
 
     /// <summary>
     /// Request object for
@@ -13,18 +14,10 @@
     public class GetEnumerationMappingsRequest : RequestResponseBase
     {
         /// <summary>
-        /// Gets or sets the adapter name to get mappings for.
+        /// Gets or sets an instance of
+        /// <see cref="Domain.Models.EnumerationsReference" />.
         /// </summary>
-        public string AdapterName
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Gets or sets the name of the enumeration to return.
-        /// </summary>
-        public string EnumerationName
+        public EnumerationsReference EnumerationsReference
         {
             get;
             set;
