@@ -12,10 +12,14 @@
     using Dfe.Spi.Translation.Application.Definitions.Processors;
     using Dfe.Spi.Translation.Application.Factories;
     using Dfe.Spi.Translation.Application.Processors;
+    using Dfe.Spi.Translation.Domain.Definitions;
+    using Dfe.Spi.Translation.Infrastructure.AzureStorage;
     using Microsoft.Azure.Functions.Extensions.DependencyInjection;
     using Microsoft.Azure.WebJobs.Logging;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Serialization;
 
     /// <summary>
     /// Functions startup class.
@@ -34,6 +38,13 @@
                 throw new ArgumentNullException(nameof(functionsHostBuilder));
             }
 
+            // camelCase, if you please.
+            JsonConvert.DefaultSettings =
+                () => new JsonSerializerSettings()
+                {
+                    ContractResolver = new CamelCasePropertyNamesContractResolver(),
+                };
+
             IServiceCollection serviceCollection =
                 functionsHostBuilder.Services;
 
@@ -48,6 +59,7 @@
 
             serviceCollection
                 .AddSingleton<IHttpErrorBodyResultProvider>(httpErrorBodyResultProvider)
+                .AddScoped<IMappingsResultStorageAdapter, MappingsResultStorageAdapter>()
                 .AddScoped<IGetEnumerationMappingsProcessor, GetEnumerationMappingsProcessor>();
         }
 

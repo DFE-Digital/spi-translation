@@ -44,6 +44,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Dfe.Spi.Translation.Application\Dfe.Spi.Translation.Application.csproj" />
+    <ProjectReference Include="..\Dfe.Spi.Translation.Infrastructure.AzureStorage\Dfe.Spi.Translation.Infrastructure.AzureStorage.csproj" />
   </ItemGroup>
 
   <ItemGroup>
