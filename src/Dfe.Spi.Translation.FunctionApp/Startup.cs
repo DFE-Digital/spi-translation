@@ -13,6 +13,8 @@
     using Dfe.Spi.Translation.Application.Factories;
     using Dfe.Spi.Translation.Application.Processors;
     using Dfe.Spi.Translation.Domain.Definitions;
+    using Dfe.Spi.Translation.Domain.Definitions.SettingsProviders;
+    using Dfe.Spi.Translation.FunctionApp.SettingsProviders;
     using Dfe.Spi.Translation.Infrastructure.AzureStorage;
     using Microsoft.Azure.Functions.Extensions.DependencyInjection;
     using Microsoft.Azure.WebJobs.Logging;
@@ -48,6 +50,7 @@
             IServiceCollection serviceCollection =
                 functionsHostBuilder.Services;
 
+            AddSettingsProviders(serviceCollection);
             AddLogging(serviceCollection);
             AddCaches(serviceCollection);
             AddFactories(serviceCollection);
@@ -61,6 +64,13 @@
                 .AddSingleton<IHttpErrorBodyResultProvider>(httpErrorBodyResultProvider)
                 .AddScoped<IMappingsResultStorageAdapter, MappingsResultStorageAdapter>()
                 .AddScoped<IGetEnumerationMappingsProcessor, GetEnumerationMappingsProcessor>();
+        }
+
+        private static void AddSettingsProviders(
+            IServiceCollection serviceCollection)
+        {
+            serviceCollection
+                .AddSingleton<IMappingsResultStorageAdapterSettingsProvider, MappingsResultStorageAdapterSettingsProvider>();
         }
 
         private static void AddFactories(IServiceCollection serviceCollection)

@@ -112,11 +112,15 @@
                     nameof(getEnumerationMappingsRequest));
             }
 
+            // TODO: try { } catch any known exceptions, and handle them.
+            // TODO: Handle no results returning (404).
             GetEnumerationMappingsResponse getEnumerationMappingsResponse =
                 await this.getEnumerationMappingsProcessor.GetEnumerationMappingsAsync(
                     getEnumerationMappingsRequest,
                     cancellationToken)
                     .ConfigureAwait(false);
+
+            toReturn = new JsonResult(getEnumerationMappingsResponse);
 
             return toReturn;
         }

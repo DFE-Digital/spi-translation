@@ -5,6 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <!-- Dfe.Spi.* -->
+    <PackageReference Include="Dfe.Spi.Common.Logging" Version="1.0.9" />
+
     <!-- Other -->
     <PackageReference Include="Meridian.MeaningfulToString" Version="1.0.4" />
 

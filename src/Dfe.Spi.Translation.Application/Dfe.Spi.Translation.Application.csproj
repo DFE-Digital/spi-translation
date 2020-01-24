@@ -7,7 +7,6 @@
   <ItemGroup>
     <!-- Dfe.Spi.* -->
     <PackageReference Include="Dfe.Spi.Common.Caching" Version="1.0.8" />
-    <PackageReference Include="Dfe.Spi.Common.Logging" Version="1.0.9" />
     <PackageReference Include="Dfe.Spi.Common.Models" Version="1.0.2" />
 
     <!-- Development/Non-Runtime -->
