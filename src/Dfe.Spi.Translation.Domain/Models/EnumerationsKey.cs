@@ -2,6 +2,7 @@
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
 
     /// <summary>
     /// Represents a key to a set of enumerations.
@@ -42,7 +43,35 @@
         /// </returns>
         public static EnumerationsKey Parse(string value)
         {
-            throw new NotImplementedException();
+            EnumerationsKey toReturn = null;
+
+            if (!string.IsNullOrEmpty(value))
+            {
+                string[] parts = value.Split(
+                    new char[] { StringRepresentationDelimiter },
+                    StringSplitOptions.RemoveEmptyEntries);
+
+                if (parts.Length == 2)
+                {
+                    string adapter = parts.First();
+                    string name = parts.Last();
+
+                    toReturn = new EnumerationsKey()
+                    {
+                        Adapter = adapter,
+                        Name = name,
+                    };
+                }
+            }
+
+            if (toReturn == null)
+            {
+                throw new FormatException(
+                    $"Could not parse the string \"{value}\" into an " +
+                    $"instance of {nameof(EnumerationsKey)}.");
+            }
+
+            return toReturn;
         }
 
         /// <summary>

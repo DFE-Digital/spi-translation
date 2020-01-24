@@ -7,6 +7,8 @@
     using Dfe.Spi.Common.Logging.Definitions;
     using Dfe.Spi.Translation.Application.Definitions.Caches;
     using Dfe.Spi.Translation.Application.Definitions.Factories;
+    using Dfe.Spi.Translation.Domain.Definitions;
+    using Dfe.Spi.Translation.Domain.Models;
 
     /// <summary>
     /// Implements <see cref="IMappingsResultCacheManagerFactory" />.
@@ -16,6 +18,7 @@
     {
         private readonly ILoggerWrapper loggerWrapper;
         private readonly IMappingsResultCache mappingsResultCache;
+        private readonly IMappingsResultStorageAdapter mappingsResultStorageAdapter;
 
         /// <summary>
         /// Initialises a new instance of the
@@ -27,12 +30,17 @@
         /// <param name="mappingsResultCache">
         /// An instance of type <see cref="IMappingsResultCache" />.
         /// </param>
+        /// <param name="mappingsResultStorageAdapter">
+        /// An instance of type <see cref="IMappingsResultStorageAdapter" />.
+        /// </param>
         public MappingsResultCacheManagerFactory(
             ILoggerWrapper loggerWrapper,
-            IMappingsResultCache mappingsResultCache)
+            IMappingsResultCache mappingsResultCache,
+            IMappingsResultStorageAdapter mappingsResultStorageAdapter)
         {
             this.loggerWrapper = loggerWrapper;
             this.mappingsResultCache = mappingsResultCache;
+            this.mappingsResultStorageAdapter = mappingsResultStorageAdapter;
         }
 
         /// <inheritdoc />
@@ -47,11 +55,46 @@
         }
 
         /// <inheritdoc />
-        public Task<object> InitialiseCacheItemAsync(
+        public async Task<object> InitialiseCacheItemAsync(
             string key,
             CancellationToken cancellationToken)
         {
-            throw new System.NotImplementedException();
+            object toReturn = null;
+
+            this.loggerWrapper.Debug(
+                $"Parsing \"{key}\" as an instance of " +
+                $"{nameof(EnumerationsKey)}...");
+
+            EnumerationsKey enumerationsKey = EnumerationsKey.Parse(key);
+
+            this.loggerWrapper.Info(
+                $"Parsed {enumerationsKey} from \"{key}\".");
+
+            this.loggerWrapper.Debug(
+                $"Fetching {enumerationsKey} from storage...");
+
+            MappingsResult mappingsResult =
+                await this.mappingsResultStorageAdapter.GetMappingsResultAsync(
+                    enumerationsKey,
+                    cancellationToken)
+                   .ConfigureAwait(false);
+
+            if (mappingsResult != null)
+            {
+                this.loggerWrapper.Info(
+                    $"Pulled {mappingsResult} from storage for " +
+                    $"{enumerationsKey}.");
+
+                toReturn = mappingsResult;
+            }
+            else
+            {
+                this.loggerWrapper.Info(
+                    $"Could not find a result for {enumerationsKey} in the " +
+                    $"underlying storage!");
+            }
+
+            return toReturn;
         }
     }
 }
