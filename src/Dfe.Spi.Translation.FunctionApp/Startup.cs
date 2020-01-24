@@ -82,7 +82,7 @@
         private static void AddCaches(IServiceCollection serviceCollection)
         {
             serviceCollection
-                .AddScoped<IMappingsResultCache, MappingsResultCache>();
+                .AddSingleton<IMappingsResultCache, MappingsResultCache>();
         }
 
         private static void AddLogging(IServiceCollection serviceCollection)
