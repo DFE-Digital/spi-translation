@@ -63,9 +63,9 @@
 
             this.loggerWrapper.Debug(
                 $"Parsing \"{key}\" as an instance of " +
-                $"{nameof(EnumerationsKey)}...");
+                $"{nameof(EnumerationKey)}...");
 
-            EnumerationsKey enumerationsKey = EnumerationsKey.Parse(key);
+            EnumerationKey enumerationsKey = EnumerationKey.Parse(key);
 
             this.loggerWrapper.Info(
                 $"Parsed {enumerationsKey} from \"{key}\".");
@@ -79,20 +79,11 @@
                     cancellationToken)
                    .ConfigureAwait(false);
 
-            if (mappingsResult != null)
-            {
-                this.loggerWrapper.Info(
-                    $"Pulled {mappingsResult} from storage for " +
-                    $"{enumerationsKey}.");
+            this.loggerWrapper.Info(
+                $"Pulled {mappingsResult} from storage for " +
+                $"{enumerationsKey}.");
 
-                toReturn = mappingsResult;
-            }
-            else
-            {
-                this.loggerWrapper.Info(
-                    $"Could not find a result for {enumerationsKey} in the " +
-                    $"underlying storage!");
-            }
+            toReturn = mappingsResult;
 
             return toReturn;
         }

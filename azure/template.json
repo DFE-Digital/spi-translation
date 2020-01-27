@@ -133,6 +133,14 @@
             {
               "name": "APPINSIGHTS_INSTRUMENTATIONKEY",
               "value": "[reference(resourceId(variables('sharedResourceGroupName'), 'microsoft.insights/components/', variables('appInsightsName')), '2015-05-01').InstrumentationKey]"
+            },
+            {
+              "name": "EnumerationsStorageConnectionString",
+              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageAccountName'), ';AccountKey=', listKeys(variables('storageAccountId'),'2015-05-01-preview').key1)]"
+            },
+            {
+              "name": "EnumerationsStorageTableName",
+              "value": "EnumerationMappings"
             }
           ]
         }

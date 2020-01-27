@@ -8,9 +8,12 @@
     /// Represents a key to a set of enumerations.
     /// </summary>
     [ExcludeFromCodeCoverage]
-    public class EnumerationsKey : ModelsBase
+    public class EnumerationKey : ModelsBase
     {
-        private const char StringRepresentationDelimiter = '.';
+        /// <summary>
+        /// The delimiter character used in enumeration keys.
+        /// </summary>
+        public const char StringRepresentationDelimiter = '.';
 
         /// <summary>
         /// Gets or sets the adapter in parcitular to get mappings for.
@@ -31,19 +34,19 @@
         }
 
         /// <summary>
-        /// Parses an instance of <see cref="EnumerationsKey" /> from its
+        /// Parses an instance of <see cref="EnumerationKey" /> from its
         /// <see cref="string" /> representation.
         /// </summary>
         /// <param name="value">
         /// The <see cref="string" /> representation of an
-        /// <see cref="EnumerationsKey" />.
+        /// <see cref="EnumerationKey" />.
         /// </param>
         /// <returns>
-        /// An instance of <see cref="EnumerationsKey" />.
+        /// An instance of <see cref="EnumerationKey" />.
         /// </returns>
-        public static EnumerationsKey Parse(string value)
+        public static EnumerationKey Parse(string value)
         {
-            EnumerationsKey toReturn = null;
+            EnumerationKey toReturn = null;
 
             if (!string.IsNullOrEmpty(value))
             {
@@ -56,7 +59,7 @@
                     string adapter = parts.First();
                     string name = parts.Last();
 
-                    toReturn = new EnumerationsKey()
+                    toReturn = new EnumerationKey()
                     {
                         Adapter = adapter,
                         Name = name,
@@ -68,7 +71,7 @@
             {
                 throw new FormatException(
                     $"Could not parse the string \"{value}\" into an " +
-                    $"instance of {nameof(EnumerationsKey)}.");
+                    $"instance of {nameof(EnumerationKey)}.");
             }
 
             return toReturn;
@@ -77,7 +80,7 @@
         /// <summary>
         /// Exports this instance to a <see cref="string" /> value. This
         /// <see cref="string" /> value can then be used to create an instance
-        /// of <see cref="EnumerationsKey" /> via <see cref="Parse(string)" />.
+        /// of <see cref="EnumerationKey" /> via <see cref="Parse(string)" />.
         /// </summary>
         /// <returns>
         /// The exported <see cref="string" /> representation of this instance.

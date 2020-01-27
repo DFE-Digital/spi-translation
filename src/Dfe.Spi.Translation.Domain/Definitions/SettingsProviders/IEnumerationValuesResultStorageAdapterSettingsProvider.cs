@@ -2,9 +2,10 @@
 {
     /// <summary>
     /// Describes the operations of the
-    /// <see cref="IMappingsResultStorageAdapter" /> settings provider.
+    /// <see cref="IEnumerationValuesResultStorageAdapter" /> settings
+    /// provider.
     /// </summary>
-    public interface IMappingsResultStorageAdapterSettingsProvider
+    public interface IEnumerationValuesResultStorageAdapterSettingsProvider
         : IStorageAdapterSettingsProvider
     {
         // Nothing.
