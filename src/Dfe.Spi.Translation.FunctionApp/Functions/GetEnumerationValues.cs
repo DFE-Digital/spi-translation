@@ -4,35 +4,32 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Net;
-    using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
     using Dfe.Spi.Common.Http.Server.Definitions;
     using Dfe.Spi.Common.Logging.Definitions;
     using Dfe.Spi.Translation.Application.Definitions.Processors;
     using Dfe.Spi.Translation.Application.Models.Processors;
-    using Dfe.Spi.Translation.Domain.Models;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Azure.WebJobs;
     using Microsoft.Azure.WebJobs.Extensions.Http;
 
     /// <summary>
-    /// Entry class for the <c>get-enumeration-mappings</c> function.
+    /// Entry class for the <c>get-enumeration-values</c> function.
     /// </summary>
-    public class GetEnumerationMappings
+    public class GetEnumerationValues
     {
-        private readonly IGetEnumerationMappingsProcessor getEnumerationMappingsProcessor;
+        private readonly IGetEnumerationValuesProcessor getEnumerationsProcessor;
         private readonly IHttpErrorBodyResultProvider httpErrorBodyResultProvider;
         private readonly ILoggerWrapper loggerWrapper;
 
         /// <summary>
-        /// Initialises a new instance of the
-        /// <see cref="GetEnumerationMappings" /> class.
+        /// Initialises a new instance of the <see cref="GetEnumerationValues" />
+        /// class.
         /// </summary>
-        /// <param name="getEnumerationMappingsProcessor">
-        /// An instance of type
-        /// <see cref="IGetEnumerationMappingsProcessor" />.
+        /// <param name="getEnumerationsProcessor">
+        /// An instance of type <see cref="IGetEnumerationValuesProcessor" />.
         /// </param>
         /// <param name="httpErrorBodyResultProvider">
         /// An instance of type <see cref="IHttpErrorBodyResultProvider" />.
@@ -40,18 +37,18 @@
         /// <param name="loggerWrapper">
         /// An instance of type <see cref="ILoggerWrapper" />.
         /// </param>
-        public GetEnumerationMappings(
-            IGetEnumerationMappingsProcessor getEnumerationMappingsProcessor,
+        public GetEnumerationValues(
+            IGetEnumerationValuesProcessor getEnumerationsProcessor,
             IHttpErrorBodyResultProvider httpErrorBodyResultProvider,
             ILoggerWrapper loggerWrapper)
         {
-            this.getEnumerationMappingsProcessor = getEnumerationMappingsProcessor;
+            this.getEnumerationsProcessor = getEnumerationsProcessor;
             this.httpErrorBodyResultProvider = httpErrorBodyResultProvider;
             this.loggerWrapper = loggerWrapper;
         }
 
         /// <summary>
-        /// Entry method for the <c>get-enumeration-mappings</c> function.
+        /// Entry method for the <c>get-enumeration-values</c> function.
         /// </summary>
         /// <param name="httpRequest">
         /// An instance of <see cref="HttpRequest" />.
@@ -59,21 +56,17 @@
         /// <param name="name">
         /// The name of the enumeration.
         /// </param>
-        /// <param name="adapter">
-        /// The name of the adapter.
-        /// </param>
         /// <param name="cancellationToken">
         /// An instance of <see cref="CancellationToken" />.
         /// </param>
         /// <returns>
         /// An instance of type <see cref="IActionResult" />.
         /// </returns>
-        [FunctionName("get-enumeration-mappings")]
+        [FunctionName("get-enumerations")]
         public async Task<IActionResult> RunAsync(
-            [HttpTrigger(AuthorizationLevel.Function, "GET", Route = "{name}/{adapter}")]
+            [HttpTrigger(AuthorizationLevel.Function, "GET", Route = "{name}")]
             HttpRequest httpRequest,
             string name,
-            string adapter,
             CancellationToken cancellationToken)
         {
             IActionResult toReturn = null;
@@ -86,18 +79,14 @@
             IHeaderDictionary headerDictionary = httpRequest.Headers;
             this.loggerWrapper.SetContext(headerDictionary);
 
-            GetEnumerationMappingsRequest getEnumerationMappingsRequest =
-                new GetEnumerationMappingsRequest()
+            GetEnumerationValuesRequest getEnumerationValuesRequest =
+                new GetEnumerationValuesRequest()
                 {
-                    EnumerationsKey = new EnumerationKey()
-                    {
-                        Adapter = adapter,
-                        Name = name,
-                    },
+                    Name = name,
                 };
 
             toReturn = await this.ProcessWellFormedRequestAsync(
-                getEnumerationMappingsRequest,
+                getEnumerationValuesRequest,
                 cancellationToken)
                 .ConfigureAwait(false);
 
@@ -105,52 +94,49 @@
         }
 
         private async Task<IActionResult> ProcessWellFormedRequestAsync(
-            GetEnumerationMappingsRequest getEnumerationMappingsRequest,
+            GetEnumerationValuesRequest getEnumerationValuesRequest,
             CancellationToken cancellationToken)
         {
             IActionResult toReturn = null;
 
             this.loggerWrapper.Debug(
-                $"Invoking {nameof(IGetEnumerationMappingsProcessor)} with " +
-                $"{getEnumerationMappingsRequest}...");
+                $"Invoking {nameof(IGetEnumerationValuesProcessor)} with " +
+                $"{getEnumerationValuesRequest}...");
 
-            GetEnumerationMappingsResponse getEnumerationMappingsResponse =
-                await this.getEnumerationMappingsProcessor.GetEnumerationMappingsAsync(
-                    getEnumerationMappingsRequest,
+            GetEnumerationValuesResponse getEnumerationValuesResponse =
+                await this.getEnumerationsProcessor.GetEnumerationValuesAsync(
+                    getEnumerationValuesRequest,
                     cancellationToken)
                     .ConfigureAwait(false);
 
             this.loggerWrapper.Info(
                 $"{nameof(IGetEnumerationMappingsProcessor)} invoked with " +
-                $"success: {getEnumerationMappingsResponse}.");
+                $"success: {getEnumerationValuesResponse}.");
 
-            Dictionary<string, string> mappings =
-                getEnumerationMappingsResponse.MappingsResult.Mappings;
+            IEnumerable<string> enumerationValues = getEnumerationValuesResponse
+                .EnumerationValuesResult
+                .EnumerationValues;
 
-            if (mappings.Any())
+            if (enumerationValues.Any())
             {
                 this.loggerWrapper.Debug(
                     $"Looks like we got some results: " +
-                    $"{getEnumerationMappingsResponse}. Returning as JSON.");
+                    $"{getEnumerationValuesResponse}. Returning as JSON.");
 
-                toReturn = new JsonResult(getEnumerationMappingsResponse);
+                toReturn = new JsonResult(getEnumerationValuesResponse);
             }
             else
             {
-                EnumerationKey enumerationsKey =
-                    getEnumerationMappingsRequest.EnumerationsKey;
+                string name = getEnumerationValuesRequest.Name;
 
                 this.loggerWrapper.Info(
-                    $"No results found for {enumerationsKey}!");
-
-                string name = enumerationsKey.Name;
-                string adapter = enumerationsKey.Adapter;
+                    $"No results found for enumeration {nameof(name)} " +
+                    $"\"{name}\"!");
 
                 toReturn = this.httpErrorBodyResultProvider.GetHttpErrorBodyResult(
                     HttpStatusCode.NotFound,
-                    1,
-                    name,
-                    adapter);
+                    2,
+                    name);
             }
 
             return toReturn;

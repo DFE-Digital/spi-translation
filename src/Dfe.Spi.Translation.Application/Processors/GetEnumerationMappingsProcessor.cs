@@ -57,7 +57,7 @@
                     nameof(getEnumerationMappingsRequest));
             }
 
-            EnumerationsKey enumerationsKey =
+            EnumerationKey enumerationsKey =
                 getEnumerationMappingsRequest.EnumerationsKey;
 
             string enumerationsKeyStr = enumerationsKey.ExportToString();
@@ -79,12 +79,8 @@
             // Result will be non-null.
             this.loggerWrapper.Info(
                 $"{nameof(MappingsResult)} pulled back from the " +
-                $"{nameof(ICacheManager)}: {mappingsResult}");
+                $"{nameof(ICacheManager)}: {mappingsResult}.");
 
-            // If the below is null, then it indicates that mappings couldn't
-            // be found for the given enumerationsKey.
-            // This needs to be inspected by the caller and dealt with as
-            // such.
             toReturn = new GetEnumerationMappingsResponse()
             {
                 MappingsResult = mappingsResult,

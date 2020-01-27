@@ -15,7 +15,7 @@
         /// using the supplied <paramref name="enumerationsKey" />.
         /// </summary>
         /// <param name="enumerationsKey">
-        /// An instance of <see cref="EnumerationsKey" />.
+        /// An instance of <see cref="EnumerationKey" />.
         /// </param>
         /// <param name="cancellationToken">
         /// An instance of <see cref="CancellationToken" />.
@@ -25,7 +25,7 @@
         /// in which case null.
         /// </returns>
         Task<MappingsResult> GetMappingsResultAsync(
-            EnumerationsKey enumerationsKey,
+            EnumerationKey enumerationsKey,
             CancellationToken cancellationToken);
     }
 }

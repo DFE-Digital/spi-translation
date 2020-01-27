@@ -10,18 +10,13 @@
     using Dfe.Spi.Translation.Domain.Definitions.SettingsProviders;
     using Dfe.Spi.Translation.Domain.Models;
     using Dfe.Spi.Translation.Infrastructure.AzureStorage.Models;
-    using Microsoft.WindowsAzure.Storage;
-    using Microsoft.WindowsAzure.Storage.Table;
 
     /// <summary>
     /// Implements <see cref="IMappingsResultStorageAdapter" />.
     /// </summary>
-    public class MappingsResultStorageAdapter : IMappingsResultStorageAdapter
+    public class MappingsResultStorageAdapter
+        : StorageAdapterBase, IMappingsResultStorageAdapter
     {
-        private readonly ILoggerWrapper loggerWrapper;
-
-        private readonly CloudTable cloudTable;
-
         /// <summary>
         /// Initialises a new instance of the
         /// <see cref="MappingsResultStorageAdapter" /> class.
@@ -36,34 +31,16 @@
         public MappingsResultStorageAdapter(
             ILoggerWrapper loggerWrapper,
             IMappingsResultStorageAdapterSettingsProvider mappingsResultStorageAdapterSettingsProvider)
+            : base(
+                  loggerWrapper,
+                  mappingsResultStorageAdapterSettingsProvider)
         {
-            if (mappingsResultStorageAdapterSettingsProvider == null)
-            {
-                throw new ArgumentNullException(
-                    nameof(mappingsResultStorageAdapterSettingsProvider));
-            }
-
-            this.loggerWrapper = loggerWrapper;
-
-            string enumerationsStorageConnectionString =
-                mappingsResultStorageAdapterSettingsProvider.EnumerationsStorageConnectionString;
-
-            CloudStorageAccount cloudStorageAccount =
-                CloudStorageAccount.Parse(enumerationsStorageConnectionString);
-
-            CloudTableClient cloudTableClient =
-                cloudStorageAccount.CreateCloudTableClient();
-
-            string enumerationsStorageTableName =
-                mappingsResultStorageAdapterSettingsProvider.EnumerationsStorageTableName;
-
-            this.cloudTable = cloudTableClient.GetTableReference(
-                enumerationsStorageTableName);
+            // Nothing.
         }
 
         /// <inheritdoc />
         public async Task<MappingsResult> GetMappingsResultAsync(
-            EnumerationsKey enumerationsKey,
+            EnumerationKey enumerationsKey,
             CancellationToken cancellationToken)
         {
             MappingsResult toReturn = null;
@@ -73,22 +50,10 @@
                 throw new ArgumentNullException(nameof(enumerationsKey));
             }
 
-            string enumerationsKeyStr = enumerationsKey.ExportToString();
-
-            TableQuery<EnumerationMapping> tableQuery =
-                new TableQuery<EnumerationMapping>();
-
-            string filter = TableQuery.GenerateFilterCondition(
-                "PartitionKey",
-                QueryComparisons.Equal,
-                enumerationsKeyStr);
-
-            tableQuery.Where(filter);
-
-            IList<EnumerationMapping> enumerationMappings =
-                await this.cloudTable.ExecuteQueryAsync(
-                    tableQuery,
-                    cancellationToken: cancellationToken)
+            IEnumerable<EnumerationMapping> enumerationMappings =
+                await this.GetEnumerationMappingsAsync(
+                    enumerationsKey,
+                    cancellationToken)
                     .ConfigureAwait(false);
 
             Dictionary<string, string> mappings = enumerationMappings

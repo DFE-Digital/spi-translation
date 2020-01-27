@@ -120,4 +120,7 @@
   <data name="_1" xml:space="preserve">
     <value>No mappings were found for enumeration "{0}" and adapter "{1}".</value>
   </data>
+  <data name="_2" xml:space="preserve">
+    <value>No enumeration values were found for "{0}".</value>
+  </data>
 </root>

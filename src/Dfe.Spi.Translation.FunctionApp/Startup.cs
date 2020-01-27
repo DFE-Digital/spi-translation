@@ -54,6 +54,8 @@
             AddLogging(serviceCollection);
             AddCaches(serviceCollection);
             AddFactories(serviceCollection);
+            AddAdapters(serviceCollection);
+            AddProcessors(serviceCollection);
 
             HttpErrorBodyResultProvider httpErrorBodyResultProvider =
                 new HttpErrorBodyResultProvider(
@@ -61,28 +63,43 @@
                     HttpErrorMessages.ResourceManager);
 
             serviceCollection
-                .AddSingleton<IHttpErrorBodyResultProvider>(httpErrorBodyResultProvider)
+                .AddSingleton<IHttpErrorBodyResultProvider>(httpErrorBodyResultProvider);
+        }
+
+        private static void AddAdapters(IServiceCollection serviceCollection)
+        {
+            serviceCollection
                 .AddScoped<IMappingsResultStorageAdapter, MappingsResultStorageAdapter>()
-                .AddScoped<IGetEnumerationMappingsProcessor, GetEnumerationMappingsProcessor>();
+                .AddScoped<IEnumerationValuesResultStorageAdapter, EnumerationValuesResultStorageAdapter>();
         }
 
         private static void AddSettingsProviders(
             IServiceCollection serviceCollection)
         {
             serviceCollection
-                .AddSingleton<IMappingsResultStorageAdapterSettingsProvider, MappingsResultStorageAdapterSettingsProvider>();
+                .AddSingleton<IMappingsResultStorageAdapterSettingsProvider, MappingsResultStorageAdapterSettingsProvider>()
+                .AddSingleton<IEnumerationValuesResultStorageAdapterSettingsProvider, EnumerationValuesResultStorageAdapterSettingsProvider>();
         }
 
         private static void AddFactories(IServiceCollection serviceCollection)
         {
             serviceCollection
-                .AddScoped<IMappingsResultCacheManagerFactory, MappingsResultCacheManagerFactory>();
+                .AddScoped<IMappingsResultCacheManagerFactory, MappingsResultCacheManagerFactory>()
+                .AddScoped<IEnumerationValuesResultCacheManagerFactory, EnumerationValuesResultCacheManagerFactory>();
+        }
+
+        private static void AddProcessors(IServiceCollection serviceCollection)
+        {
+            serviceCollection
+                .AddScoped<IGetEnumerationMappingsProcessor, GetEnumerationMappingsProcessor>()
+                .AddScoped<IGetEnumerationValuesProcessor, GetEnumerationValuesProcessor>();
         }
 
         private static void AddCaches(IServiceCollection serviceCollection)
         {
             serviceCollection
-                .AddSingleton<IMappingsResultCache, MappingsResultCache>();
+                .AddSingleton<IMappingsResultCache, MappingsResultCache>()
+                .AddSingleton<IEnumerationValuesResultCache, EnumerationValuesResultCache>();
         }
 
         private static void AddLogging(IServiceCollection serviceCollection)

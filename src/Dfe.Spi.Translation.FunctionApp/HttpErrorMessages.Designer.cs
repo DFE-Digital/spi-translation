@@ -68,5 +68,14 @@ namespace Dfe.Spi.Translation.FunctionApp {
                 return ResourceManager.GetString("_1", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No enumeration values were found for &quot;{0}&quot;..
+        /// </summary>
+        internal static string _2 {
+            get {
+                return ResourceManager.GetString("_2", resourceCulture);
+            }
+        }
     }
 }
