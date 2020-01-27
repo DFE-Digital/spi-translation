@@ -76,19 +76,10 @@
             MappingsResult mappingsResult =
                 unboxedMappingsResult as MappingsResult;
 
-            if (mappingsResult != null)
-            {
-                this.loggerWrapper.Info(
-                    $"{nameof(MappingsResult)} pulled back from the " +
-                    $"{nameof(ICacheManager)}: {mappingsResult}");
-            }
-            else
-            {
-                this.loggerWrapper.Info(
-                    $"No {nameof(MappingsResult)} found for " +
-                    $"{nameof(enumerationsKey)} {enumerationsKey} " +
-                    $"(\"{enumerationsKeyStr}\").");
-            }
+            // Result will be non-null.
+            this.loggerWrapper.Info(
+                $"{nameof(MappingsResult)} pulled back from the " +
+                $"{nameof(ICacheManager)}: {mappingsResult}");
 
             // If the below is null, then it indicates that mappings couldn't
             // be found for the given enumerationsKey.

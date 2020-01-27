@@ -1,6 +1,7 @@
 ﻿namespace Dfe.Spi.Translation.FunctionApp.Functions
 {
     using System;
+    using System.Linq;
     using System.Net;
     using System.Threading;
     using System.Threading.Tasks;
@@ -9,6 +10,7 @@
     using Dfe.Spi.Common.Logging.Definitions;
     using Dfe.Spi.Translation.Application.Definitions.Processors;
     using Dfe.Spi.Translation.Application.Models.Processors;
+    using Dfe.Spi.Translation.Domain.Models;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Azure.WebJobs;
@@ -67,6 +69,7 @@
             HttpRequest httpRequest,
             CancellationToken cancellationToken)
         {
+            // TODO: Change to be a GET rather than a POST.
             IActionResult toReturn = await this.ValidateAndRunAsync(
                 httpRequest,
                 cancellationToken)
@@ -112,15 +115,46 @@
                     nameof(getEnumerationMappingsRequest));
             }
 
+            this.loggerWrapper.Debug(
+                $"Invoking {nameof(IGetEnumerationMappingsProcessor)} with " +
+                $"{getEnumerationMappingsRequest}...");
+
             // TODO: try { } catch any known exceptions, and handle them.
-            // TODO: Handle no results returning (404).
             GetEnumerationMappingsResponse getEnumerationMappingsResponse =
                 await this.getEnumerationMappingsProcessor.GetEnumerationMappingsAsync(
                     getEnumerationMappingsRequest,
                     cancellationToken)
                     .ConfigureAwait(false);
 
-            toReturn = new JsonResult(getEnumerationMappingsResponse);
+            this.loggerWrapper.Info(
+                $"{nameof(IGetEnumerationMappingsProcessor)} invoked with " +
+                $"success.");
+
+            if (getEnumerationMappingsResponse.MappingsResult.Mappings.Any())
+            {
+                this.loggerWrapper.Debug(
+                    $"Looks like we got some results: " +
+                    $"{getEnumerationMappingsResponse}. Returning as JSON.");
+
+                toReturn = new JsonResult(getEnumerationMappingsResponse);
+            }
+            else
+            {
+                EnumerationsKey enumerationsKey =
+                    getEnumerationMappingsRequest.EnumerationsKey;
+
+                this.loggerWrapper.Info(
+                    $"No results found for {enumerationsKey}!");
+
+                string name = enumerationsKey.Name;
+                string adapter = enumerationsKey.Adapter;
+
+                toReturn = this.httpErrorBodyResultProvider.GetHttpErrorBodyResult(
+                    HttpStatusCode.NotFound,
+                    3,
+                    name,
+                    adapter);
+            }
 
             return toReturn;
         }

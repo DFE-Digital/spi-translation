@@ -77,5 +77,14 @@ namespace Dfe.Spi.Translation.FunctionApp {
                 return ResourceManager.GetString("_2", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No mappings were found for enumeration &quot;{0}&quot; and adapter &quot;{1}&quot;..
+        /// </summary>
+        internal static string _3 {
+            get {
+                return ResourceManager.GetString("_3", resourceCulture);
+            }
+        }
     }
 }
