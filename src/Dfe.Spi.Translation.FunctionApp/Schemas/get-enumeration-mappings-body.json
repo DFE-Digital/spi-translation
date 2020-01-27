@@ -1,0 +1,23 @@
+{
+  "type": "object",
+  "properties": {
+    "enumerationsKey": {
+      "type": "object",
+      "properties": {
+        "adapter": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "adapter",
+        "name"
+      ]
+    }
+  },
+  "required": [
+    "enumerationsKey"
+  ]
+}
