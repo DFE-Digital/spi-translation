@@ -3,9 +3,9 @@
     using System;
     using System.Linq;
     using System.Net;
+    using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
-    using Dfe.Spi.Common.Http.Server;
     using Dfe.Spi.Common.Http.Server.Definitions;
     using Dfe.Spi.Common.Logging.Definitions;
     using Dfe.Spi.Translation.Application.Definitions.Processors;
@@ -20,7 +20,6 @@
     /// Entry class for the <c>get-enumeration-mappings</c> function.
     /// </summary>
     public class GetEnumerationMappings
-        : FunctionsBase<GetEnumerationMappingsRequest>
     {
         private readonly IGetEnumerationMappingsProcessor getEnumerationMappingsProcessor;
         private readonly IHttpErrorBodyResultProvider httpErrorBodyResultProvider;
@@ -44,7 +43,6 @@
             IGetEnumerationMappingsProcessor getEnumerationMappingsProcessor,
             IHttpErrorBodyResultProvider httpErrorBodyResultProvider,
             ILoggerWrapper loggerWrapper)
-            : base(loggerWrapper)
         {
             this.getEnumerationMappingsProcessor = getEnumerationMappingsProcessor;
             this.httpErrorBodyResultProvider = httpErrorBodyResultProvider;
@@ -55,7 +53,13 @@
         /// Entry method for the <c>get-enumeration-mappings</c> function.
         /// </summary>
         /// <param name="httpRequest">
-        /// An instance of <see cref="HttpContext" />.
+        /// An instance of <see cref="HttpRequest" />.
+        /// </param>
+        /// <param name="name">
+        /// The name of the enumeration.
+        /// </param>
+        /// <param name="adapter">
+        /// The name of the adapter.
         /// </param>
         /// <param name="cancellationToken">
         /// An instance of <see cref="CancellationToken" />.
@@ -65,45 +69,41 @@
         /// </returns>
         [FunctionName("get-enumeration-mappings")]
         public async Task<IActionResult> RunAsync(
-            [HttpTrigger(AuthorizationLevel.Function, "POST", Route = null)]
+            [HttpTrigger(AuthorizationLevel.Function, "GET", Route = "{name}/{adapter}")]
             HttpRequest httpRequest,
+            string name,
+            string adapter,
             CancellationToken cancellationToken)
         {
-            // TODO: Change to be a GET rather than a POST.
-            IActionResult toReturn = await this.ValidateAndRunAsync(
-                httpRequest,
+            IActionResult toReturn = null;
+
+            if (httpRequest == null)
+            {
+                throw new ArgumentNullException(nameof(httpRequest));
+            }
+
+            IHeaderDictionary headerDictionary = httpRequest.Headers;
+            this.loggerWrapper.SetContext(headerDictionary);
+
+            GetEnumerationMappingsRequest getEnumerationMappingsRequest =
+                new GetEnumerationMappingsRequest()
+                {
+                    EnumerationsKey = new EnumerationsKey()
+                    {
+                        Adapter = adapter,
+                        Name = name,
+                    },
+                };
+
+            toReturn = await this.ProcessWellFormedRequestAsync(
+                getEnumerationMappingsRequest,
                 cancellationToken)
                 .ConfigureAwait(false);
 
             return toReturn;
         }
 
-        /// <inheritdoc />
-        protected override HttpErrorBodyResult GetMalformedErrorResponse()
-        {
-            HttpErrorBodyResult toReturn =
-                this.httpErrorBodyResultProvider.GetHttpErrorBodyResult(
-                    HttpStatusCode.BadRequest,
-                    1);
-
-            return toReturn;
-        }
-
-        /// <inheritdoc />
-        protected override HttpErrorBodyResult GetSchemaValidationResponse(
-            string message)
-        {
-            HttpErrorBodyResult toReturn =
-                this.httpErrorBodyResultProvider.GetHttpErrorBodyResult(
-                    HttpStatusCode.BadRequest,
-                    2,
-                    message);
-
-            return toReturn;
-        }
-
-        /// <inheritdoc />
-        protected async override Task<IActionResult> ProcessWellFormedRequestAsync(
+        private async Task<IActionResult> ProcessWellFormedRequestAsync(
             GetEnumerationMappingsRequest getEnumerationMappingsRequest,
             CancellationToken cancellationToken)
         {
@@ -119,7 +119,6 @@
                 $"Invoking {nameof(IGetEnumerationMappingsProcessor)} with " +
                 $"{getEnumerationMappingsRequest}...");
 
-            // TODO: try { } catch any known exceptions, and handle them.
             GetEnumerationMappingsResponse getEnumerationMappingsResponse =
                 await this.getEnumerationMappingsProcessor.GetEnumerationMappingsAsync(
                     getEnumerationMappingsRequest,
@@ -151,7 +150,7 @@
 
                 toReturn = this.httpErrorBodyResultProvider.GetHttpErrorBodyResult(
                     HttpStatusCode.NotFound,
-                    3,
+                    1,
                     name,
                     adapter);
             }
