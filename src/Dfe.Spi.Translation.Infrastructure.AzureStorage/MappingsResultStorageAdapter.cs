@@ -10,6 +10,7 @@
     using Dfe.Spi.Translation.Domain.Definitions.SettingsProviders;
     using Dfe.Spi.Translation.Domain.Models;
     using Dfe.Spi.Translation.Infrastructure.AzureStorage.Models;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// Implements <see cref="IMappingsResultStorageAdapter" />.
@@ -56,13 +57,24 @@
                     cancellationToken)
                     .ConfigureAwait(false);
 
-            Dictionary<string, string> mappings = enumerationMappings
-                .ToDictionary(x => x.RowKey, x => x.Mapping);
+            Dictionary<string, string[]> mappings = enumerationMappings
+                .ToDictionary(
+                x => x.RowKey,
+                x => MappingToArray(x.Mapping));
 
             toReturn = new MappingsResult()
             {
                 Mappings = mappings,
             };
+
+            return toReturn;
+        }
+
+        private static string[] MappingToArray(string mappingStr)
+        {
+            string[] toReturn = null;
+
+            toReturn = JsonConvert.DeserializeObject<string[]>(mappingStr);
 
             return toReturn;
         }
