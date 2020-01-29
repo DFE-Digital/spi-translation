@@ -124,7 +124,7 @@
                 $"{nameof(IGetEnumerationMappingsProcessor)} invoked with " +
                 $"success: {getEnumerationMappingsResponse}.");
 
-            Dictionary<string, string> mappings =
+            Dictionary<string, string[]> mappings =
                 getEnumerationMappingsResponse.MappingsResult.Mappings;
 
             if (mappings.Any())

@@ -18,7 +18,7 @@
         /// Gets or sets the mappings as a
         /// <see cref="Dictionary{String, String}" />.
         /// </summary>
-        public Dictionary<string, string> Mappings
+        public Dictionary<string, string[]> Mappings
         {
             get;
             set;
