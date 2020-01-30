@@ -8,7 +8,7 @@
   "basePath": "/api",
   "host": "__function_app_host__",
   "paths": {
-    "/{name}/{adapter}": {
+    "/enumerations/{name}/{adapter}": {
       "get": {
         "description": "Returns a single enumeration's mappings for a given adapter.",
         "operationId": "get-enumeration-mappings",
@@ -24,6 +24,13 @@
             "in": "path",
             "name": "adapter",
             "description": "The name of the adapter.",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "Authoziation",
+            "description": "Bearer token authentication.",
             "type": "string",
             "required": true
           },
@@ -57,7 +64,7 @@
         }
       }
     },
-    "/{name}": {
+    "/enumerations/{name}": {
       "get": {
         "description": "Returns all enumeration values for a given enumeration name.",
         "operationId": "get-enumeration-values",
@@ -67,6 +74,13 @@
             "name": "name",
             "type": "string",
             "description": "The name of the enumeration in which to return values for.",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "Authoziation",
+            "description": "Bearer token authentication.",
+            "type": "string",
             "required": true
           },
           {
@@ -103,7 +117,15 @@
       "get": {
         "description": "Standard diagnostics method, used to test the health of the facade's underlying system.",
         "operationId": "heart-beat",
-        "parameters": [],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authoziation",
+            "description": "Bearer token authentication.",
+            "type": "string",
+            "required": true
+          }
+        ],
         "responses": {
           "200": {
             "description": "The standard/only response from the method."
