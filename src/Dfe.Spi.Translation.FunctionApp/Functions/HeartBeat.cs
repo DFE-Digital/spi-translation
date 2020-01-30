@@ -23,7 +23,7 @@
         /// </returns>
         [FunctionName(nameof(HeartBeat))]
         public static IActionResult Run(
-            [HttpTrigger(AuthorizationLevel.Function, "GET", Route = null)]
+            [HttpTrigger(AuthorizationLevel.Function, "GET", Route = "HeartBeat")]
             HttpRequest httpRequest)
         {
             OkResult toReturn = new OkResult();

@@ -64,7 +64,7 @@
         /// </returns>
         [FunctionName("get-enumerations")]
         public async Task<IActionResult> RunAsync(
-            [HttpTrigger(AuthorizationLevel.Function, "GET", Route = "{name}")]
+            [HttpTrigger(AuthorizationLevel.Function, "GET", Route = "enumerations/{name}")]
             HttpRequest httpRequest,
             string name,
             CancellationToken cancellationToken)
