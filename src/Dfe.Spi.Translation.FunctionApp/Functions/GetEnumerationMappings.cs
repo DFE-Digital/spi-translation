@@ -70,7 +70,7 @@
         /// </returns>
         [FunctionName("get-enumeration-mappings")]
         public async Task<IActionResult> RunAsync(
-            [HttpTrigger(AuthorizationLevel.Function, "GET", Route = "{name}/{adapter}")]
+            [HttpTrigger(AuthorizationLevel.Function, "GET", Route = "enumerations/{name}/{adapter}")]
             HttpRequest httpRequest,
             string name,
             string adapter,

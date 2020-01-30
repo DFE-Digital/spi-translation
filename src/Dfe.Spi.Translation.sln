@@ -21,7 +21,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dfe.Spi.Translation.Applica
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dfe.Spi.Translation.Domain", "Dfe.Spi.Translation.Domain\Dfe.Spi.Translation.Domain.csproj", "{5F1AB237-ED68-43F7-BEDB-10C97E1AE901}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dfe.Spi.Translation.Infrastructure.AzureStorage", "Dfe.Spi.Translation.Infrastructure.AzureStorage\Dfe.Spi.Translation.Infrastructure.AzureStorage.csproj", "{2A76A120-92E3-4AC1-97CF-6028E933890F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dfe.Spi.Translation.Infrastructure.AzureStorage", "Dfe.Spi.Translation.Infrastructure.AzureStorage\Dfe.Spi.Translation.Infrastructure.AzureStorage.csproj", "{2A76A120-92E3-4AC1-97CF-6028E933890F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{10F9D1FE-0387-4704-99F8-D7786FD9A04E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
