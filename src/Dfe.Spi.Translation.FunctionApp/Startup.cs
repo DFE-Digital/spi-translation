@@ -2,6 +2,7 @@
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
+    using Dfe.Spi.Common.Context.Definitions;
     using Dfe.Spi.Common.Http.Server;
     using Dfe.Spi.Common.Http.Server.Definitions;
     using Dfe.Spi.Common.Logging;
@@ -62,7 +63,12 @@
                     SystemErrorIdentifier,
                     HttpErrorMessages.ResourceManager);
 
+            HttpSpiExecutionContextManager httpSpiExecutionContextManager =
+                new HttpSpiExecutionContextManager();
+
             serviceCollection
+                .AddSingleton<ISpiExecutionContextManager>(httpSpiExecutionContextManager)
+                .AddSingleton<IHttpSpiExecutionContextManager>(httpSpiExecutionContextManager)
                 .AddSingleton<IHttpErrorBodyResultProvider>(httpErrorBodyResultProvider);
         }
 
