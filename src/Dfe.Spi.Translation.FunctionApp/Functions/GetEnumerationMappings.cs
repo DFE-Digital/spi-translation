@@ -24,6 +24,7 @@
     {
         private readonly IGetEnumerationMappingsProcessor getEnumerationMappingsProcessor;
         private readonly IHttpErrorBodyResultProvider httpErrorBodyResultProvider;
+        private readonly IHttpSpiExecutionContextManager httpSpiExecutionContextManager;
         private readonly ILoggerWrapper loggerWrapper;
 
         /// <summary>
@@ -37,16 +38,21 @@
         /// <param name="httpErrorBodyResultProvider">
         /// An instance of type <see cref="IHttpErrorBodyResultProvider" />.
         /// </param>
+        /// <param name="httpSpiExecutionContextManager">
+        /// An instance of type <see cref="IHttpSpiExecutionContextManager" />.
+        /// </param>
         /// <param name="loggerWrapper">
         /// An instance of type <see cref="ILoggerWrapper" />.
         /// </param>
         public GetEnumerationMappings(
             IGetEnumerationMappingsProcessor getEnumerationMappingsProcessor,
             IHttpErrorBodyResultProvider httpErrorBodyResultProvider,
+            IHttpSpiExecutionContextManager httpSpiExecutionContextManager,
             ILoggerWrapper loggerWrapper)
         {
             this.getEnumerationMappingsProcessor = getEnumerationMappingsProcessor;
             this.httpErrorBodyResultProvider = httpErrorBodyResultProvider;
+            this.httpSpiExecutionContextManager = httpSpiExecutionContextManager;
             this.loggerWrapper = loggerWrapper;
         }
 
@@ -84,7 +90,7 @@
             }
 
             IHeaderDictionary headerDictionary = httpRequest.Headers;
-            this.loggerWrapper.SetContext(headerDictionary);
+            this.httpSpiExecutionContextManager.SetContext(headerDictionary);
 
             GetEnumerationMappingsRequest getEnumerationMappingsRequest =
                 new GetEnumerationMappingsRequest()
