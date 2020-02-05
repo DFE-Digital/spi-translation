@@ -68,7 +68,7 @@
         /// <returns>
         /// An instance of type <see cref="IActionResult" />.
         /// </returns>
-        [FunctionName("get-enumerations")]
+        [FunctionName("get-enumeration-values")]
         public async Task<IActionResult> RunAsync(
             [HttpTrigger(AuthorizationLevel.Function, "GET", Route = "enumerations/{name}")]
             HttpRequest httpRequest,
