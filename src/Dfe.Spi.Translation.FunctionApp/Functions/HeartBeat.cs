@@ -1,5 +1,6 @@
 ﻿namespace Dfe.Spi.Translation.FunctionApp.Functions
 {
+    using System.Diagnostics.CodeAnalysis;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Azure.WebJobs;
@@ -10,6 +11,7 @@
     /// Note: EAPIM's health check is *not* looking for kebab-case.
     ///       So, this is a one-off.
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public static class HeartBeat
     {
         /// <summary>
