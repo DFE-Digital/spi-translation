@@ -1,0 +1,62 @@
+Mapping,PartitionKey,RowKey
+"[""10""]",GIAS.ProviderStatus,Archived
+"[""2"", ""9"", ""5"", ""6"", ""8""]",GIAS.ProviderStatus,Closed
+"[""3""]",GIAS.ProviderStatus,Closing
+"[""1""]",GIAS.ProviderStatus,Open
+"[""7"", ""4""]",GIAS.ProviderStatus,Opening
+"[""46""]",GIAS.ProviderSubType,Academy 16 to 19 sponsor led
+"[""45""]",GIAS.ProviderSubType,Academy 16-19 converter
+"[""42""]",GIAS.ProviderSubType,Academy alternative provision converter
+"[""43""]",GIAS.ProviderSubType,Academy alternative provision sponsor led
+"[""34""]",GIAS.ProviderSubType,Academy converter
+"[""44""]",GIAS.ProviderSubType,Academy special converter
+"[""33""]",GIAS.ProviderSubType,Academy special sponsor led
+"[""28""]",GIAS.ProviderSubType,Academy sponsor led
+"[""37""]",GIAS.ProviderSubType,British schools overseas
+"[""47""]",GIAS.ProviderSubType,Children's centre
+"[""48""]",GIAS.ProviderSubType,Children's centre linked site
+"[""6""]",GIAS.ProviderSubType,City technology college
+"[""1""]",GIAS.ProviderSubType,Community school
+"[""7""]",GIAS.ProviderSubType,Community special school
+"[""22""]",GIAS.ProviderSubType,Early years setting
+"[""17""]",GIAS.ProviderSubType,European schools
+"[""5""]",GIAS.ProviderSubType,Foundation school
+"[""12""]",GIAS.ProviderSubType,Foundation special school
+"[""35""]",GIAS.ProviderSubType,Free schools
+"[""39""]",GIAS.ProviderSubType,Free schools 16 to 19
+"[""38""]",GIAS.ProviderSubType,Free schools alternative provision
+"[""36""]",GIAS.ProviderSubType,Free schools special
+"[""18""]",GIAS.ProviderSubType,Further education
+"[""29""]",GIAS.ProviderSubType,Higher education institutions
+"[""9""]",GIAS.ProviderSubType,Independent school approved for SEN pupils
+"[""56""]",GIAS.ProviderSubType,Institution funded by other government department
+"[""98""]",GIAS.ProviderSubType,Legacy types
+"[""15""]",GIAS.ProviderSubType,Local authority nursery school
+"[""27""]",GIAS.ProviderSubType,Miscellaneous
+"[""8""]",GIAS.ProviderSubType,Non-maintained special school
+"[""25""]",GIAS.ProviderSubType,Offshore schools
+"[""11""]",GIAS.ProviderSubType,Other independent school
+"[""10""]",GIAS.ProviderSubType,Other independent special school
+"[""23""]",GIAS.ProviderSubType,Playing for success centres
+"[""14""]",GIAS.ProviderSubType,Pupil referral unit
+"[""24""]",GIAS.ProviderSubType,Secure units
+"[""26""]",GIAS.ProviderSubType,Service children's education
+"[""31""]",GIAS.ProviderSubType,Sixth form centres
+"[""32""]",GIAS.ProviderSubType,Special post 16 institution
+"[""41""]",GIAS.ProviderSubType,Studio schools
+"[""40""]",GIAS.ProviderSubType,University technical college
+"[""2""]",GIAS.ProviderSubType,Voluntary aided school
+"[""3""]",GIAS.ProviderSubType,Voluntary controlled school
+"[""30""]",GIAS.ProviderSubType,Welsh establishment
+"[""10""]",GIAS.ProviderType,Academy
+"[""1""]",GIAS.ProviderType,College
+"[""11""]",GIAS.ProviderType,Free school
+"[""3""]",GIAS.ProviderType,Independant School
+"[""4""]",GIAS.ProviderType,Local Authority Maintained School
+"[""9""]",GIAS.ProviderType,Other Type
+"[""5""]",GIAS.ProviderType,Special School
+"[""2""]",GIAS.ProviderType,University
+"[""DeActivationConfirmed""]",UKRLP.ProviderStatus,Closed
+"[""DeActivationInProcess""]",UKRLP.ProviderStatus,Closing
+"[""Active""]",UKRLP.ProviderStatus,Open
+"[""Any""]",UKRLP.ProviderStatus,Opening
