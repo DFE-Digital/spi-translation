@@ -1,62 +1,256 @@
-Mapping,PartitionKey,RowKey
-"[""10""]",GIAS.ProviderStatus,Archived
-"[""2"", ""9"", ""5"", ""6"", ""8""]",GIAS.ProviderStatus,Closed
-"[""3""]",GIAS.ProviderStatus,Closing
-"[""1""]",GIAS.ProviderStatus,Open
-"[""7"", ""4""]",GIAS.ProviderStatus,Opening
-"[""46""]",GIAS.ProviderSubType,Academy 16 to 19 sponsor led
-"[""45""]",GIAS.ProviderSubType,Academy 16-19 converter
-"[""42""]",GIAS.ProviderSubType,Academy alternative provision converter
-"[""43""]",GIAS.ProviderSubType,Academy alternative provision sponsor led
-"[""34""]",GIAS.ProviderSubType,Academy converter
-"[""44""]",GIAS.ProviderSubType,Academy special converter
-"[""33""]",GIAS.ProviderSubType,Academy special sponsor led
-"[""28""]",GIAS.ProviderSubType,Academy sponsor led
-"[""37""]",GIAS.ProviderSubType,British schools overseas
-"[""47""]",GIAS.ProviderSubType,Children's centre
-"[""48""]",GIAS.ProviderSubType,Children's centre linked site
-"[""6""]",GIAS.ProviderSubType,City technology college
-"[""1""]",GIAS.ProviderSubType,Community school
-"[""7""]",GIAS.ProviderSubType,Community special school
-"[""22""]",GIAS.ProviderSubType,Early years setting
-"[""17""]",GIAS.ProviderSubType,European schools
-"[""5""]",GIAS.ProviderSubType,Foundation school
-"[""12""]",GIAS.ProviderSubType,Foundation special school
-"[""35""]",GIAS.ProviderSubType,Free schools
-"[""39""]",GIAS.ProviderSubType,Free schools 16 to 19
-"[""38""]",GIAS.ProviderSubType,Free schools alternative provision
-"[""36""]",GIAS.ProviderSubType,Free schools special
-"[""18""]",GIAS.ProviderSubType,Further education
-"[""29""]",GIAS.ProviderSubType,Higher education institutions
-"[""9""]",GIAS.ProviderSubType,Independent school approved for SEN pupils
-"[""56""]",GIAS.ProviderSubType,Institution funded by other government department
-"[""98""]",GIAS.ProviderSubType,Legacy types
-"[""15""]",GIAS.ProviderSubType,Local authority nursery school
-"[""27""]",GIAS.ProviderSubType,Miscellaneous
-"[""8""]",GIAS.ProviderSubType,Non-maintained special school
-"[""25""]",GIAS.ProviderSubType,Offshore schools
-"[""11""]",GIAS.ProviderSubType,Other independent school
-"[""10""]",GIAS.ProviderSubType,Other independent special school
-"[""23""]",GIAS.ProviderSubType,Playing for success centres
-"[""14""]",GIAS.ProviderSubType,Pupil referral unit
-"[""24""]",GIAS.ProviderSubType,Secure units
-"[""26""]",GIAS.ProviderSubType,Service children's education
-"[""31""]",GIAS.ProviderSubType,Sixth form centres
-"[""32""]",GIAS.ProviderSubType,Special post 16 institution
-"[""41""]",GIAS.ProviderSubType,Studio schools
-"[""40""]",GIAS.ProviderSubType,University technical college
-"[""2""]",GIAS.ProviderSubType,Voluntary aided school
-"[""3""]",GIAS.ProviderSubType,Voluntary controlled school
-"[""30""]",GIAS.ProviderSubType,Welsh establishment
-"[""10""]",GIAS.ProviderType,Academy
-"[""1""]",GIAS.ProviderType,College
-"[""11""]",GIAS.ProviderType,Free school
-"[""3""]",GIAS.ProviderType,Independant School
-"[""4""]",GIAS.ProviderType,Local Authority Maintained School
-"[""9""]",GIAS.ProviderType,Other Type
-"[""5""]",GIAS.ProviderType,Special School
-"[""2""]",GIAS.ProviderType,University
-"[""DeActivationConfirmed""]",UKRLP.ProviderStatus,Closed
-"[""DeActivationInProcess""]",UKRLP.ProviderStatus,Closing
-"[""Active""]",UKRLP.ProviderStatus,Open
-"[""Any""]",UKRLP.ProviderStatus,Opening
+PartitionKey,RowKey,Mapping
+GIAS.ProviderStatus,Archived,"[""10""]"
+GIAS.ProviderStatus,Closed,"[""2"", ""9"", ""5"", ""6"", ""8""]"
+GIAS.ProviderStatus,Closing,"[""3""]"
+GIAS.ProviderStatus,Open,"[""1""]"
+GIAS.ProviderStatus,Opening,"[""7"", ""4""]"
+GIAS.ProviderSubType,Academy 16 to 19 sponsor led,"[""46""]"
+GIAS.ProviderSubType,Academy 16-19 converter,"[""45""]"
+GIAS.ProviderSubType,Academy alternative provision converter,"[""42""]"
+GIAS.ProviderSubType,Academy alternative provision sponsor led,"[""43""]"
+GIAS.ProviderSubType,Academy converter,"[""34""]"
+GIAS.ProviderSubType,Academy special converter,"[""44""]"
+GIAS.ProviderSubType,Academy special sponsor led,"[""33""]"
+GIAS.ProviderSubType,Academy sponsor led,"[""28""]"
+GIAS.ProviderSubType,British schools overseas,"[""37""]"
+GIAS.ProviderSubType,Children's centre,"[""47""]"
+GIAS.ProviderSubType,Children's centre linked site,"[""48""]"
+GIAS.ProviderSubType,City technology college,"[""6""]"
+GIAS.ProviderSubType,Community school,"[""1""]"
+GIAS.ProviderSubType,Community special school,"[""7""]"
+GIAS.ProviderSubType,Early years setting,"[""22""]"
+GIAS.ProviderSubType,European schools,"[""17""]"
+GIAS.ProviderSubType,Foundation school,"[""5""]"
+GIAS.ProviderSubType,Foundation special school,"[""12""]"
+GIAS.ProviderSubType,Free schools,"[""35""]"
+GIAS.ProviderSubType,Free schools 16 to 19,"[""39""]"
+GIAS.ProviderSubType,Free schools alternative provision,"[""38""]"
+GIAS.ProviderSubType,Free schools special,"[""36""]"
+GIAS.ProviderSubType,Further education,"[""18""]"
+GIAS.ProviderSubType,Higher education institutions,"[""29""]"
+GIAS.ProviderSubType,Independent school approved for SEN pupils,"[""9""]"
+GIAS.ProviderSubType,Institution funded by other government department,"[""56""]"
+GIAS.ProviderSubType,Legacy types,"[""98""]"
+GIAS.ProviderSubType,Local authority nursery school,"[""15""]"
+GIAS.ProviderSubType,Miscellaneous,"[""27""]"
+GIAS.ProviderSubType,Non-maintained special school,"[""8""]"
+GIAS.ProviderSubType,Offshore schools,"[""25""]"
+GIAS.ProviderSubType,Other independent school,"[""11""]"
+GIAS.ProviderSubType,Other independent special school,"[""10""]"
+GIAS.ProviderSubType,Playing for success centres,"[""23""]"
+GIAS.ProviderSubType,Pupil referral unit,"[""14""]"
+GIAS.ProviderSubType,Secure units,"[""24""]"
+GIAS.ProviderSubType,Service children's education,"[""26""]"
+GIAS.ProviderSubType,Sixth form centres,"[""31""]"
+GIAS.ProviderSubType,Special post 16 institution,"[""32""]"
+GIAS.ProviderSubType,Studio schools,"[""41""]"
+GIAS.ProviderSubType,University technical college,"[""40""]"
+GIAS.ProviderSubType,Voluntary aided school,"[""2""]"
+GIAS.ProviderSubType,Voluntary controlled school,"[""3""]"
+GIAS.ProviderSubType,Welsh establishment,"[""30""]"
+GIAS.ProviderType,Academy,"[""10""]"
+GIAS.ProviderType,College,"[""1""]"
+GIAS.ProviderType,Free school,"[""11""]"
+GIAS.ProviderType,Independant School,"[""3""]"
+GIAS.ProviderType,Local Authority Maintained School,"[""4""]"
+GIAS.ProviderType,Other Type,"[""9""]"
+GIAS.ProviderType,Special School,"[""5""]"
+GIAS.ProviderType,University,"[""2""]"
+UKRLP.ProviderStatus,Closed,"[""DeActivationConfirmed""]"
+UKRLP.ProviderStatus,Closing,"[""DeActivationInProcess""]"
+UKRLP.ProviderStatus,Open,"[""Active""]"
+UKRLP.ProviderStatus,Opening,"[""Any""]"
+GIAS.LocalAuthorityCode,Barking and Dagenham,"[""301""]"
+GIAS.LocalAuthorityCode,Barnet,"[""302""]"
+GIAS.LocalAuthorityCode,Barnsley,"[""370""]"
+GIAS.LocalAuthorityCode,Bath and North East Somerset,"[""800""]"
+GIAS.LocalAuthorityCode,Bedford,"[""822""]"
+GIAS.LocalAuthorityCode,Bexley,"[""303""]"
+GIAS.LocalAuthorityCode,Birmingham,"[""330""]"
+GIAS.LocalAuthorityCode,Blackburn with Darwen,"[""889""]"
+GIAS.LocalAuthorityCode,Blackpool,"[""890""]"
+GIAS.LocalAuthorityCode,Bolton,"[""350""]"
+GIAS.LocalAuthorityCode,Bournemouth,"[""837""]"
+GIAS.LocalAuthorityCode,Bracknell Forest,"[""867""]"
+GIAS.LocalAuthorityCode,Bradford,"[""380""]"
+GIAS.LocalAuthorityCode,Brent,"[""304""]"
+GIAS.LocalAuthorityCode,Brighton and Hove,"[""846""]"
+GIAS.LocalAuthorityCode,Bristol City of,"[""801""]"
+GIAS.LocalAuthorityCode,Bromley,"[""305""]"
+GIAS.LocalAuthorityCode,Buckinghamshire,"[""825""]"
+GIAS.LocalAuthorityCode,Bury,"[""351""]"
+GIAS.LocalAuthorityCode,Calderdale,"[""381""]"
+GIAS.LocalAuthorityCode,Cambridgeshire,"[""873""]"
+GIAS.LocalAuthorityCode,Camden,"[""202""]"
+GIAS.LocalAuthorityCode,Central Bedfordshire,"[""823""]"
+GIAS.LocalAuthorityCode,Cheshire East,"[""895""]"
+GIAS.LocalAuthorityCode,Cheshire West and Chester,"[""896""]"
+GIAS.LocalAuthorityCode,City of London,"[""201""]"
+GIAS.LocalAuthorityCode,Cornwall,"[""908""]"
+GIAS.LocalAuthorityCode,Coventry,"[""331""]"
+GIAS.LocalAuthorityCode,Croydon,"[""306""]"
+GIAS.LocalAuthorityCode,Cumbria,"[""909""]"
+GIAS.LocalAuthorityCode,Darlington,"[""841""]"
+GIAS.LocalAuthorityCode,Derby,"[""831""]"
+GIAS.LocalAuthorityCode,Derbyshire,"[""830""]"
+GIAS.LocalAuthorityCode,Devon,"[""878""]"
+GIAS.LocalAuthorityCode,Doncaster,"[""371""]"
+GIAS.LocalAuthorityCode,Dorset,"[""835""]"
+GIAS.LocalAuthorityCode,Dudley,"[""332""]"
+GIAS.LocalAuthorityCode,Durham,"[""840""]"
+GIAS.LocalAuthorityCode,Ealing,"[""307""]"
+GIAS.LocalAuthorityCode,East Riding of Yorkshire,"[""811""]"
+GIAS.LocalAuthorityCode,East Sussex,"[""845""]"
+GIAS.LocalAuthorityCode,Enfield,"[""308""]"
+GIAS.LocalAuthorityCode,Essex,"[""881""]"
+GIAS.LocalAuthorityCode,Gateshead,"[""390""]"
+GIAS.LocalAuthorityCode,Gloucestershire,"[""916""]"
+GIAS.LocalAuthorityCode,Greenwich,"[""203""]"
+GIAS.LocalAuthorityCode,Hackney,"[""204""]"
+GIAS.LocalAuthorityCode,Halton,"[""876""]"
+GIAS.LocalAuthorityCode,Hammersmith and Fulham,"[""205""]"
+GIAS.LocalAuthorityCode,Hampshire,"[""850""]"
+GIAS.LocalAuthorityCode,Haringey,"[""309""]"
+GIAS.LocalAuthorityCode,Harrow,"[""310""]"
+GIAS.LocalAuthorityCode,Hartlepool,"[""805""]"
+GIAS.LocalAuthorityCode,Havering,"[""311""]"
+GIAS.LocalAuthorityCode,Herefordshire,"[""884""]"
+GIAS.LocalAuthorityCode,Hertfordshire,"[""919""]"
+GIAS.LocalAuthorityCode,Hillingdon,"[""312""]"
+GIAS.LocalAuthorityCode,Hounslow,"[""313""]"
+GIAS.LocalAuthorityCode,Isle of Wight,"[""921""]"
+GIAS.LocalAuthorityCode,Isles Of Scilly,"[""420""]"
+GIAS.LocalAuthorityCode,Islington,"[""206""]"
+GIAS.LocalAuthorityCode,Kensington and Chelsea,"[""207""]"
+GIAS.LocalAuthorityCode,Kent,"[""886""]"
+GIAS.LocalAuthorityCode,Kingston upon Hull City of,"[""810""]"
+GIAS.LocalAuthorityCode,Kingston upon Thames,"[""314""]"
+GIAS.LocalAuthorityCode,Kirklees,"[""382""]"
+GIAS.LocalAuthorityCode,Knowsley,"[""340""]"
+GIAS.LocalAuthorityCode,Lambeth,"[""208""]"
+GIAS.LocalAuthorityCode,Lancashire,"[""888""]"
+GIAS.LocalAuthorityCode,Leeds,"[""383""]"
+GIAS.LocalAuthorityCode,Leicester,"[""856""]"
+GIAS.LocalAuthorityCode,Leicestershire,"[""855""]"
+GIAS.LocalAuthorityCode,Lewisham,"[""209""]"
+GIAS.LocalAuthorityCode,Lincolnshire,"[""925""]"
+GIAS.LocalAuthorityCode,Liverpool,"[""341""]"
+GIAS.LocalAuthorityCode,Luton,"[""821""]"
+GIAS.LocalAuthorityCode,Manchester,"[""352""]"
+GIAS.LocalAuthorityCode,Medway,"[""887""]"
+GIAS.LocalAuthorityCode,Merton,"[""315""]"
+GIAS.LocalAuthorityCode,Middlesbrough,"[""806""]"
+GIAS.LocalAuthorityCode,Milton Keynes,"[""826""]"
+GIAS.LocalAuthorityCode,Newcastle upon Tyne,"[""391""]"
+GIAS.LocalAuthorityCode,Newham,"[""316""]"
+GIAS.LocalAuthorityCode,Norfolk,"[""926""]"
+GIAS.LocalAuthorityCode,North East Lincolnshire,"[""812""]"
+GIAS.LocalAuthorityCode,North Lincolnshire,"[""813""]"
+GIAS.LocalAuthorityCode,North Somerset,"[""802""]"
+GIAS.LocalAuthorityCode,North Tyneside,"[""392""]"
+GIAS.LocalAuthorityCode,North Yorkshire,"[""815""]"
+GIAS.LocalAuthorityCode,Northamptonshire,"[""928""]"
+GIAS.LocalAuthorityCode,Northumberland,"[""929""]"
+GIAS.LocalAuthorityCode,Nottingham,"[""892""]"
+GIAS.LocalAuthorityCode,Nottinghamshire,"[""891""]"
+GIAS.LocalAuthorityCode,Oldham,"[""353""]"
+GIAS.LocalAuthorityCode,Oxfordshire,"[""931""]"
+GIAS.LocalAuthorityCode,Peterborough,"[""874""]"
+GIAS.LocalAuthorityCode,Plymouth,"[""879""]"
+GIAS.LocalAuthorityCode,Poole,"[""836""]"
+GIAS.LocalAuthorityCode,Portsmouth,"[""851""]"
+GIAS.LocalAuthorityCode,Reading,"[""870""]"
+GIAS.LocalAuthorityCode,Redbridge,"[""317""]"
+GIAS.LocalAuthorityCode,Redcar and Cleveland,"[""807""]"
+GIAS.LocalAuthorityCode,Richmond upon Thames,"[""318""]"
+GIAS.LocalAuthorityCode,Rochdale,"[""354""]"
+GIAS.LocalAuthorityCode,Rotherham,"[""372""]"
+GIAS.LocalAuthorityCode,Rutland,"[""857""]"
+GIAS.LocalAuthorityCode,Salford,"[""355""]"
+GIAS.LocalAuthorityCode,Sandwell,"[""333""]"
+GIAS.LocalAuthorityCode,Sefton,"[""343""]"
+GIAS.LocalAuthorityCode,Sheffield,"[""373""]"
+GIAS.LocalAuthorityCode,Shropshire,"[""893""]"
+GIAS.LocalAuthorityCode,Slough,"[""871""]"
+GIAS.LocalAuthorityCode,Solihull,"[""334""]"
+GIAS.LocalAuthorityCode,Somerset,"[""933""]"
+GIAS.LocalAuthorityCode,South Gloucestershire,"[""803""]"
+GIAS.LocalAuthorityCode,South Tyneside,"[""393""]"
+GIAS.LocalAuthorityCode,Southampton,"[""852""]"
+GIAS.LocalAuthorityCode,Southend-on-Sea,"[""882""]"
+GIAS.LocalAuthorityCode,Southwark,"[""210""]"
+GIAS.LocalAuthorityCode,St. Helens,"[""342""]"
+GIAS.LocalAuthorityCode,Staffordshire,"[""860""]"
+GIAS.LocalAuthorityCode,Stockport,"[""356""]"
+GIAS.LocalAuthorityCode,Stockton-on-Tees,"[""808""]"
+GIAS.LocalAuthorityCode,Stoke-on-Trent,"[""861""]"
+GIAS.LocalAuthorityCode,Suffolk,"[""935""]"
+GIAS.LocalAuthorityCode,Sunderland,"[""394""]"
+GIAS.LocalAuthorityCode,Surrey,"[""936""]"
+GIAS.LocalAuthorityCode,Sutton,"[""319""]"
+GIAS.LocalAuthorityCode,Swindon,"[""866""]"
+GIAS.LocalAuthorityCode,Tameside,"[""357""]"
+GIAS.LocalAuthorityCode,Telford and Wrekin,"[""894""]"
+GIAS.LocalAuthorityCode,Thurrock,"[""883""]"
+GIAS.LocalAuthorityCode,Torbay,"[""880""]"
+GIAS.LocalAuthorityCode,Tower Hamlets,"[""211""]"
+GIAS.LocalAuthorityCode,Trafford,"[""358""]"
+GIAS.LocalAuthorityCode,Wakefield,"[""384""]"
+GIAS.LocalAuthorityCode,Walsall,"[""335""]"
+GIAS.LocalAuthorityCode,Waltham Forest,"[""320""]"
+GIAS.LocalAuthorityCode,Wandsworth,"[""212""]"
+GIAS.LocalAuthorityCode,Warrington,"[""877""]"
+GIAS.LocalAuthorityCode,Warwickshire,"[""937""]"
+GIAS.LocalAuthorityCode,West Berkshire,"[""869""]"
+GIAS.LocalAuthorityCode,West Sussex,"[""938""]"
+GIAS.LocalAuthorityCode,Westminster,"[""213""]"
+GIAS.LocalAuthorityCode,Wigan,"[""359""]"
+GIAS.LocalAuthorityCode,Wiltshire,"[""865""]"
+GIAS.LocalAuthorityCode,Windsor and Maidenhead,"[""868""]"
+GIAS.LocalAuthorityCode,Wirral,"[""344""]"
+GIAS.LocalAuthorityCode,Wokingham,"[""872""]"
+GIAS.LocalAuthorityCode,Wolverhampton,"[""336""]"
+GIAS.LocalAuthorityCode,Worcestershire,"[""885""]"
+GIAS.LocalAuthorityCode,York,"[""816""]"
+GIAS.LocalAuthorityCode,Blaenau Gwent,"[""677""]"
+GIAS.LocalAuthorityCode,Bridgend,"[""672""]"
+GIAS.LocalAuthorityCode,Caerphilly,"[""676""]"
+GIAS.LocalAuthorityCode,Cardiff,"[""681""]"
+GIAS.LocalAuthorityCode,Carmarthenshire,"[""669""]"
+GIAS.LocalAuthorityCode,Ceredigion,"[""667""]"
+GIAS.LocalAuthorityCode,Conwy,"[""662""]"
+GIAS.LocalAuthorityCode,Denbighshire,"[""663""]"
+GIAS.LocalAuthorityCode,Flintshire,"[""664""]"
+GIAS.LocalAuthorityCode,Gwynedd,"[""661""]"
+GIAS.LocalAuthorityCode,Isle of Anglesey,"[""660""]"
+GIAS.LocalAuthorityCode,Merthyr Tydfil,"[""675""]"
+GIAS.LocalAuthorityCode,Monmouthshire,"[""679""]"
+GIAS.LocalAuthorityCode,Neath Port Talbot,"[""671""]"
+GIAS.LocalAuthorityCode,Newport,"[""680""]"
+GIAS.LocalAuthorityCode,Pembrokeshire,"[""668""]"
+GIAS.LocalAuthorityCode,Powys,"[""666""]"
+GIAS.LocalAuthorityCode,"Rhondda, Cynon, Taff","[""674""]"
+GIAS.LocalAuthorityCode,Swansea,"[""670""]"
+GIAS.LocalAuthorityCode,The Vale of Glamorgan,"[""673""]"
+GIAS.LocalAuthorityCode,Torfaen,"[""678""]"
+GIAS.LocalAuthorityCode,Wrexham,"[""665""]"
+GIAS.LocalAuthorityCode,BFPO Overseas Establishments,"[""702""]"
+GIAS.LocalAuthorityCode,Fieldwork Overseas Establishments,"[""704""]"
+GIAS.LocalAuthorityCode,Gibraltar Overseas Establishments,"[""708""]"
+GIAS.LocalAuthorityCode,Guernsey Offshore Establishments,"[""706""]"
+GIAS.LocalAuthorityCode,Isle of Man Offshore Establishments,"[""705""]"
+GIAS.LocalAuthorityCode,Jersey Offshore Establishments,"[""707""]"
+GIAS.LocalAuthorityCode,Scotland Offshore Establishments,"[""701""]"
+GIAS.LocalAuthorityCode,Does not apply,"[""0""]"
+GIAS.LocalAuthorityCode,Not recorded,"[""999""]"
+GIAS.BoardersCode,Boarding school,"[""3""]"
+GIAS.BoardersCode,Children's home (Boarding school),"[""2""]"
+GIAS.BoardersCode,College or FE residential accomodation,"[""4""]"
+GIAS.BoardersCode,No boarders,"[""1""]"
+GIAS.BoardersCode,Not applicable,"[""0""]"
+GIAS.BoardersCode,Not recorded,"[""9""]"
+GIAS.GenderOfEntry,Boys,"[""1""]"
+GIAS.GenderOfEntry,Girls,"[""2""]"
+GIAS.GenderOfEntry,Mixed,"[""3""]"
+GIAS.GenderOfEntry,Not Applicable,"[""0""]"
+GIAS.GenderOfEntry,Not Recorded,"[""9""]"
