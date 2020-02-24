@@ -32,6 +32,11 @@
       "minLength": 2,
       "maxLength": 2,
       "defaultValue": "01"
+    },
+    "eapimIp": {
+      "type": "string",
+      "minLength": 7,
+      "maxLength": 15
     }
   },
   "variables": {
@@ -94,7 +99,7 @@
       }
     },
     {
-      "apiVersion": "2016-08-01",
+      "apiVersion": "2018-11-01",
       "type": "Microsoft.Web/sites",
       "name": "[variables('functionAppName')]",
       "location": "[resourceGroup().location]",
@@ -142,6 +147,14 @@
             {
               "name": "EnumerationsStorageTableName",
               "value": "EnumerationMappings"
+            }
+          ],
+          "ipSecurityRestrictions": [
+            {
+              "ipAddress": "[concat(parameters('eapimIp'), '/32')]",
+              "action": "Allow",
+              "name": "Allow EAPIM",
+              "priority": 1
             }
           ]
         }
