@@ -85,16 +85,27 @@
             IHeaderDictionary headerDictionary = httpRequest.Headers;
             this.httpSpiExecutionContextManager.SetContext(headerDictionary);
 
-            GetEnumerationValuesRequest getEnumerationValuesRequest =
-                new GetEnumerationValuesRequest()
-                {
-                    Name = name,
-                };
+            string path = httpRequest.Path;
 
-            toReturn = await this.ProcessWellFormedRequestAsync(
-                getEnumerationValuesRequest,
-                cancellationToken)
-                .ConfigureAwait(false);
+            if (!path.EndsWith('/'))
+            {
+                GetEnumerationValuesRequest getEnumerationValuesRequest =
+                    new GetEnumerationValuesRequest()
+                    {
+                        Name = name,
+                    };
+
+                toReturn = await this.ProcessWellFormedRequestAsync(
+                    getEnumerationValuesRequest,
+                    cancellationToken)
+                    .ConfigureAwait(false);
+            }
+            else
+            {
+                toReturn = this.httpErrorBodyResultProvider.GetHttpErrorBodyResult(
+                    HttpStatusCode.BadRequest,
+                    3);
+            }
 
             return toReturn;
         }

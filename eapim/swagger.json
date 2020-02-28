@@ -104,6 +104,12 @@
               "type": "object"
             }
           },
+          "400": {
+            "description": "Specify an adapter, or remove the forward-slash suffix.",
+            "schema": {
+              "$ref": "#/definitions/http-error-body"
+            }
+          },
           "404": {
             "description": "No enumeration values exist.",
             "schema": {

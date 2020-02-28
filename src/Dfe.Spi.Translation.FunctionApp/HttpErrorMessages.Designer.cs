@@ -77,5 +77,14 @@ namespace Dfe.Spi.Translation.FunctionApp {
                 return ResourceManager.GetString("_2", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please specify an adapter, or remove the forward-slash suffix..
+        /// </summary>
+        internal static string _3 {
+            get {
+                return ResourceManager.GetString("_3", resourceCulture);
+            }
+        }
     }
 }

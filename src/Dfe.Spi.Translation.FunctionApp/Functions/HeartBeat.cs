@@ -1,5 +1,6 @@
 ﻿namespace Dfe.Spi.Translation.FunctionApp.Functions
 {
+    using System.Diagnostics.CodeAnalysis;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Azure.WebJobs;
@@ -22,6 +23,10 @@
         /// An instance of type <see cref="IActionResult" />.
         /// </returns>
         [FunctionName(nameof(HeartBeat))]
+        [SuppressMessage(
+            "Microsoft.Usage",
+            "CA1801",
+            Justification = "Required by the runtime/need for argument attribute.")]
         public static IActionResult Run(
             [HttpTrigger(AuthorizationLevel.Function, "GET", Route = "HeartBeat")]
             HttpRequest httpRequest)
