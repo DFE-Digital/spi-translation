@@ -8,6 +8,91 @@
   "basePath": "/api",
   "host": "__function_app_host__",
   "paths": {
+    "/enumerations": {
+      "get": {
+        "description": "Returns all enumerations and their values.",
+        "operationId": "get-all-enumeration-values",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Bearer token authentication.",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "X-Internal-Request-Id",
+            "type": "string",
+            "description": "An internal request id. Should be a vaild guid.",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "X-External-Request-Id",
+            "description": "An optional external request id. Used in logging.",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "All enumerations and their values",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/enumerations/{name}": {
+      "get": {
+        "description": "Returns all enumeration values for a given enumeration name.",
+        "operationId": "get-enumeration-values",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "name",
+            "type": "string",
+            "description": "The name of the enumeration in which to return values for.",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Bearer token authentication.",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "X-Internal-Request-Id",
+            "type": "string",
+            "description": "An internal request id. Should be a vaild guid.",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "X-External-Request-Id",
+            "description": "An optional external request id. Used in logging.",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Enumeration values exist, and are included in the body of the response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "404": {
+            "description": "No enumeration values exist.",
+            "schema": {
+              "$ref": "#/definitions/http-error-body"
+            }
+          }
+        }
+      }
+    },
     "/enumerations/{name}/{adapter}": {
       "get": {
         "description": "Returns a single enumeration's mappings for a given adapter.",
@@ -57,55 +142,6 @@
           },
           "404": {
             "description": "No mappings exist.",
-            "schema": {
-              "$ref": "#/definitions/http-error-body"
-            }
-          }
-        }
-      }
-    },
-    "/enumerations/{name}": {
-      "get": {
-        "description": "Returns all enumeration values for a given enumeration name.",
-        "operationId": "get-enumeration-values",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "name",
-            "type": "string",
-            "description": "The name of the enumeration in which to return values for.",
-            "required": true
-          },
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "Bearer token authentication.",
-            "type": "string",
-            "required": true
-          },
-          {
-            "in": "header",
-            "name": "X-Internal-Request-Id",
-            "type": "string",
-            "description": "An internal request id. Should be a vaild guid.",
-            "required": true
-          },
-          {
-            "in": "header",
-            "name": "X-External-Request-Id",
-            "description": "An optional external request id. Used in logging.",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Enumeration values exist, and are included in the body of the response.",
-            "schema": {
-              "type": "object"
-            }
-          },
-          "404": {
-            "description": "No enumeration values exist.",
             "schema": {
               "$ref": "#/definitions/http-error-body"
             }

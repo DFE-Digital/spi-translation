@@ -73,7 +73,8 @@
         {
             serviceCollection
                 .AddScoped<IMappingsResultStorageAdapter, MappingsResultStorageAdapter>()
-                .AddScoped<IEnumerationValuesResultStorageAdapter, EnumerationValuesResultStorageAdapter>();
+                .AddScoped<IEnumerationValuesResultStorageAdapter, EnumerationValuesResultStorageAdapter>()
+                .AddScoped<IAllEnumerationValuesResultStorageAdapter, AllEnumerationValuesResultStorageAdapter>();
         }
 
         private static void AddSettingsProviders(
@@ -81,28 +82,32 @@
         {
             serviceCollection
                 .AddSingleton<IMappingsResultStorageAdapterSettingsProvider, MappingsResultStorageAdapterSettingsProvider>()
-                .AddSingleton<IEnumerationValuesResultStorageAdapterSettingsProvider, EnumerationValuesResultStorageAdapterSettingsProvider>();
+                .AddSingleton<IEnumerationValuesResultStorageAdapterSettingsProvider, EnumerationValuesResultStorageAdapterSettingsProvider>()
+                .AddSingleton<IAllEnumerationValuesResultStorageAdapterSettingsProvider, AllEnumerationValuesResultStorageAdapterSettingsProvider>();
         }
 
         private static void AddFactories(IServiceCollection serviceCollection)
         {
             serviceCollection
                 .AddScoped<IMappingsResultCacheManagerFactory, MappingsResultCacheManagerFactory>()
-                .AddScoped<IEnumerationValuesResultCacheManagerFactory, EnumerationValuesResultCacheManagerFactory>();
+                .AddScoped<IEnumerationValuesResultCacheManagerFactory, EnumerationValuesResultCacheManagerFactory>()
+                .AddScoped<IAllEnumerationValuesResultCacheManagerFactory, AllEnumerationValuesResultCacheManagerFactory>();
         }
 
         private static void AddProcessors(IServiceCollection serviceCollection)
         {
             serviceCollection
                 .AddScoped<IGetEnumerationMappingsProcessor, GetEnumerationMappingsProcessor>()
-                .AddScoped<IGetEnumerationValuesProcessor, GetEnumerationValuesProcessor>();
+                .AddScoped<IGetEnumerationValuesProcessor, GetEnumerationValuesProcessor>()
+                .AddScoped<IGetAllEnumerationValuesProcessor, GetAllEnumerationValuesProcessor>();
         }
 
         private static void AddCaches(IServiceCollection serviceCollection)
         {
             serviceCollection
                 .AddSingleton<IMappingsResultCache, MappingsResultCache>()
-                .AddSingleton<IEnumerationValuesResultCache, EnumerationValuesResultCache>();
+                .AddSingleton<IEnumerationValuesResultCache, EnumerationValuesResultCache>()
+                .AddSingleton<IAllEnumerationValuesResultCache, AllEnumerationValuesResultCache>();
         }
 
         private static void AddLogging(IServiceCollection serviceCollection)
