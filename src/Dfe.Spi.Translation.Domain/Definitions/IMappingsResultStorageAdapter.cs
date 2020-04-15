@@ -15,7 +15,7 @@
         /// using the supplied <paramref name="adapterName" />.
         /// </summary>
         /// <param name="adapterName">
-        /// Name of the adapter
+        /// Name of the adapter.
         /// </param>
         /// <param name="cancellationToken">
         /// An instance of <see cref="CancellationToken" />.
@@ -27,7 +27,7 @@
         Task<AdapterMappingsResult> GetAdapterMappingsResultAsync(
             string adapterName,
             CancellationToken cancellationToken);
-        
+
         /// <summary>
         /// Gets from storage the specified <see cref="MappingsResult" />,
         /// using the supplied <paramref name="enumerationsKey" />.

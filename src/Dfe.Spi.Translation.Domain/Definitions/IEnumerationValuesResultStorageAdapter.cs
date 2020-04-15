@@ -22,7 +22,7 @@
         /// </returns>
         Task<AllEnumerationValuesResult> GetAllEnumerationValuesResultAsync(
             CancellationToken cancellationToken);
-        
+
         /// <summary>
         /// Gets from storage all distinct enumeration values for a given
         /// enumeration <paramref name="name" />.

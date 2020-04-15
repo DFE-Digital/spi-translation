@@ -15,7 +15,7 @@ namespace Dfe.Spi.Translation.Domain.Models
     public class AdapterMappingsResult
     {
         /// <summary>
-        /// Gets of sets all enumerations and their mappings for adapter
+        /// Gets or sets all enumerations and their mappings for adapter.
         /// </summary>
         public Dictionary<string, MappingsResult> EnumerationMappings { get; set; }
     }
