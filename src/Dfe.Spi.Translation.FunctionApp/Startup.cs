@@ -73,8 +73,7 @@
         {
             serviceCollection
                 .AddScoped<IMappingsResultStorageAdapter, MappingsResultStorageAdapter>()
-                .AddScoped<IEnumerationValuesResultStorageAdapter, EnumerationValuesResultStorageAdapter>()
-                .AddScoped<IAllEnumerationValuesResultStorageAdapter, AllEnumerationValuesResultStorageAdapter>();
+                .AddScoped<IEnumerationValuesResultStorageAdapter, EnumerationValuesResultStorageAdapter>();
         }
 
         private static void AddSettingsProviders(
@@ -82,8 +81,7 @@
         {
             serviceCollection
                 .AddSingleton<IMappingsResultStorageAdapterSettingsProvider, MappingsResultStorageAdapterSettingsProvider>()
-                .AddSingleton<IEnumerationValuesResultStorageAdapterSettingsProvider, EnumerationValuesResultStorageAdapterSettingsProvider>()
-                .AddSingleton<IAllEnumerationValuesResultStorageAdapterSettingsProvider, AllEnumerationValuesResultStorageAdapterSettingsProvider>();
+                .AddSingleton<IEnumerationValuesResultStorageAdapterSettingsProvider, EnumerationValuesResultStorageAdapterSettingsProvider>();
         }
 
         private static void AddFactories(IServiceCollection serviceCollection)

@@ -14,7 +14,7 @@ namespace Dfe.Spi.Translation.Application.Factories
         : IAllEnumerationValuesResultCacheManagerFactory
     {
         private readonly IAllEnumerationValuesResultCache allEnumerationValuesResultCache;
-        private readonly IAllEnumerationValuesResultStorageAdapter allEnumerationValuesResultStorageAdapter;
+        private readonly IEnumerationValuesResultStorageAdapter allEnumerationValuesResultStorageAdapter;
         private readonly ILoggerWrapper loggerWrapper;
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace Dfe.Spi.Translation.Application.Factories
         /// </param>
         public AllEnumerationValuesResultCacheManagerFactory(
             IAllEnumerationValuesResultCache allEnumerationValuesResultCache,
-            IAllEnumerationValuesResultStorageAdapter allEnumerationValuesResultStorageAdapter,
+            IEnumerationValuesResultStorageAdapter allEnumerationValuesResultStorageAdapter,
             ILoggerWrapper loggerWrapper)
         {
             this.allEnumerationValuesResultCache = allEnumerationValuesResultCache;

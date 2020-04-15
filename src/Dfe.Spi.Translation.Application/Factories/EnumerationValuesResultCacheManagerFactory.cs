@@ -67,7 +67,7 @@
                 $"name \"{key}\"...");
 
             EnumerationValuesResult allEnumerationsResult =
-                await this.enumerationValuesResultStorageAdapter.GetAllEnumerationValuesResultAsync(
+                await this.enumerationValuesResultStorageAdapter.GetEnumerationValuesResultAsync(
                     key,
                     cancellationToken)
                     .ConfigureAwait(false);

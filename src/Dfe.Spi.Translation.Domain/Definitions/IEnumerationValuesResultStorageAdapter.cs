@@ -11,6 +11,19 @@
     public interface IEnumerationValuesResultStorageAdapter
     {
         /// <summary>
+        /// Gets from storage all distinct enumeration values for each
+        /// enumeration.
+        /// </summary>
+        /// <param name="cancellationToken">
+        /// An instance of <see cref="CancellationToken" />.
+        /// </param>
+        /// <returns>
+        /// An instance of <see cref="AllEnumerationValuesResult" />.
+        /// </returns>
+        Task<AllEnumerationValuesResult> GetAllEnumerationValuesResultAsync(
+            CancellationToken cancellationToken);
+        
+        /// <summary>
         /// Gets from storage all distinct enumeration values for a given
         /// enumeration <paramref name="name" />.
         /// </summary>
@@ -23,7 +36,7 @@
         /// <returns>
         /// An instance of <see cref="EnumerationValuesResult" />.
         /// </returns>
-        Task<EnumerationValuesResult> GetAllEnumerationValuesResultAsync(
+        Task<EnumerationValuesResult> GetEnumerationValuesResultAsync(
             string name,
             CancellationToken cancellationToken);
     }
