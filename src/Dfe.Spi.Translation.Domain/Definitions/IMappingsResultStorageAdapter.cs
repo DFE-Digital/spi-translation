@@ -11,6 +11,24 @@
     public interface IMappingsResultStorageAdapter
     {
         /// <summary>
+        /// Gets from storage the specified <see cref="AdapterMappingsResult" />,
+        /// using the supplied <paramref name="adapterName" />.
+        /// </summary>
+        /// <param name="adapterName">
+        /// Name of the adapter.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// An instance of <see cref="CancellationToken" />.
+        /// </param>
+        /// <returns>
+        /// An instance of <see cref="AdapterMappingsResult" />, unless no mappings found,
+        /// in which case null.
+        /// </returns>
+        Task<AdapterMappingsResult> GetAdapterMappingsResultAsync(
+            string adapterName,
+            CancellationToken cancellationToken);
+
+        /// <summary>
         /// Gets from storage the specified <see cref="MappingsResult" />,
         /// using the supplied <paramref name="enumerationsKey" />.
         /// </summary>
