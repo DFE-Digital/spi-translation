@@ -43,6 +43,7 @@ namespace Dfe.Spi.Translation.Application.Factories
             this.mappingsResultStorageAdapter = mappingsResultStorageAdapter;
         }
         
+        /// <inheritdoc />
         public ICacheManager Create()
         {
             CacheManager toReturn = new CacheManager(
@@ -53,6 +54,7 @@ namespace Dfe.Spi.Translation.Application.Factories
             return toReturn;
         }
 
+        /// <inheritdoc />
         public async Task<object> InitialiseCacheItemAsync(string key, CancellationToken cancellationToken)
         {
             object toReturn = null;

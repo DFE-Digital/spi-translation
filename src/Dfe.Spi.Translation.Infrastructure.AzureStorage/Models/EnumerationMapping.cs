@@ -1,8 +1,11 @@
 ﻿namespace Dfe.Spi.Translation.Infrastructure.AzureStorage.Models
 {
+    using System.Diagnostics.CodeAnalysis;
+    
     /// <summary>
     /// Represents an table enumeration mapping entry.
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public class EnumerationMapping : ModelsBase
     {
         /// <summary>

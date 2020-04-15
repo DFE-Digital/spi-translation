@@ -44,6 +44,7 @@ namespace Dfe.Spi.Translation.Application.Processors
                 allEnumerationValuesResultCacheManagerFactory.Create();
         }
 
+        /// <inheritdoc />
         public async Task<GetAllEnumerationValuesResponse> GetAllEnumerationValuesAsync(CancellationToken cancellationToken)
         {
             const string cacheKeyName = "__AllEnumerations";

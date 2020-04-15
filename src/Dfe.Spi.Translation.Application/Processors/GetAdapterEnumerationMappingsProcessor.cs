@@ -44,6 +44,7 @@ namespace Dfe.Spi.Translation.Application.Processors
             this.loggerWrapper = loggerWrapper;
         }
 
+        /// <inheritdoc />
         public async Task<GetAdapterEnumerationMappingsResponse> GetAdapterEnumerationMappingsAsync(
             GetAdapterEnumerationMappingsRequest getAdapterEnumerationMappingsRequest, 
             CancellationToken cancellationToken)

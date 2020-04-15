@@ -20,6 +20,9 @@ using Newtonsoft.Json;
 
 namespace Dfe.Spi.Translation.FunctionApp.Functions
 {
+    /// <summary>
+    /// Entry class for the <c>get-adapter-enumeration-mappings</c> function.
+    /// </summary>
     public class GetAdapterEnumerationMappings
     {
         private const string FunctionName = nameof(GetAdapterEnumerationMappings);

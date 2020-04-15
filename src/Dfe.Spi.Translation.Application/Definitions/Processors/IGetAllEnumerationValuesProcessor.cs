@@ -12,9 +12,6 @@ namespace Dfe.Spi.Translation.Application.Definitions.Processors
         /// <summary>
         /// The get enumeration mappings entry method.
         /// </summary>
-        /// <param name="getEnumerationValuesRequest">
-        /// An instance of <see cref="GetEnumerationValuesRequest" />.
-        /// </param>
         /// <param name="cancellationToken">
         /// An instance of <see cref="CancellationToken" />.
         /// </param>

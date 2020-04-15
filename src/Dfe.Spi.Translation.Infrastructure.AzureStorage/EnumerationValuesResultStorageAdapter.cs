@@ -17,8 +17,6 @@
     public class EnumerationValuesResultStorageAdapter
         : StorageAdapterBase, IEnumerationValuesResultStorageAdapter
     {
-        private readonly ILoggerWrapper loggerWrapper;
-
         /// <summary>
         /// Initialises a new instance of the
         /// <see cref="EnumerationValuesResultStorageAdapter" /> class.
@@ -37,7 +35,6 @@
                   loggerWrapper,
                   enumerationsResultStorageAdapterSettingsProvider)
         {
-            this.loggerWrapper = loggerWrapper;
         }
 
         /// <inheritdoc />

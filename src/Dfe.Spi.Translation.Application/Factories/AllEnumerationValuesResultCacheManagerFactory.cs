@@ -10,6 +10,9 @@ namespace Dfe.Spi.Translation.Application.Factories
     using Dfe.Spi.Translation.Domain.Definitions;
     using Dfe.Spi.Translation.Domain.Models;
     
+    /// <summary>
+    /// Implements <see cref="IAllEnumerationValuesResultCacheManagerFactory" />.
+    /// </summary>
     public class AllEnumerationValuesResultCacheManagerFactory
         : IAllEnumerationValuesResultCacheManagerFactory
     {
@@ -41,6 +44,7 @@ namespace Dfe.Spi.Translation.Application.Factories
             this.loggerWrapper = loggerWrapper;
         }
         
+        /// <inheritdoc />
         public ICacheManager Create()
         {
             CacheManager toReturn = new CacheManager(
@@ -51,6 +55,7 @@ namespace Dfe.Spi.Translation.Application.Factories
             return toReturn;
         }
 
+        /// <inheritdoc />
         public async Task<object> InitialiseCacheItemAsync(string key, CancellationToken cancellationToken)
         {
             object toReturn = null;
