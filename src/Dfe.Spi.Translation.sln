@@ -25,6 +25,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dfe.Spi.Translation.Infrast
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{10F9D1FE-0387-4704-99F8-D7786FD9A04E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EAPIM", "EAPIM", "{BECF4D64-EAE0-43C9-8273-818455160713}"
+ProjectSection(SolutionItems) = preProject
+	..\eapim\named-values.csv = ..\eapim\named-values.csv
+	..\eapim\oauth.xml = ..\eapim\oauth.xml
+	..\eapim\policy.xml = ..\eapim\policy.xml
+	..\eapim\swagger.json = ..\eapim\swagger.json
+EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{2253B447-2C37-4FF2-8C74-42586C87B0E7}"
+ProjectSection(SolutionItems) = preProject
+	..\data\enumeration-mappings.csv = ..\data\enumeration-mappings.csv
+EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,6 +67,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{3CD4FDEE-8061-4AD4-BB1C-781EA1585330} = {32E1B920-CF1C-40EC-8CED-C4E281A5FE04}
 		{6270936C-7B0F-4B7C-9225-6FDB7CCC2B85} = {32E1B920-CF1C-40EC-8CED-C4E281A5FE04}
+		{BECF4D64-EAE0-43C9-8273-818455160713} = {32E1B920-CF1C-40EC-8CED-C4E281A5FE04}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B8F406CF-07E0-4E74-BC64-B1CB6A0FFDB4}

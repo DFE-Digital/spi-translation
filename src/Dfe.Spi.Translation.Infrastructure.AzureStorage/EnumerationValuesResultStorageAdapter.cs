@@ -17,8 +17,6 @@
     public class EnumerationValuesResultStorageAdapter
         : StorageAdapterBase, IEnumerationValuesResultStorageAdapter
     {
-        private readonly ILoggerWrapper loggerWrapper;
-
         /// <summary>
         /// Initialises a new instance of the
         /// <see cref="EnumerationValuesResultStorageAdapter" /> class.
@@ -26,22 +24,55 @@
         /// <param name="loggerWrapper">
         /// An instance of type <see cref="ILoggerWrapper" />.
         /// </param>
-        /// <param name="allEnumerationsResultStorageAdapterSettingsProvider">
+        /// <param name="enumerationsResultStorageAdapterSettingsProvider">
         /// An instance of type
         /// <see cref="IEnumerationValuesResultStorageAdapterSettingsProvider" />.
         /// </param>
         public EnumerationValuesResultStorageAdapter(
             ILoggerWrapper loggerWrapper,
-            IEnumerationValuesResultStorageAdapterSettingsProvider allEnumerationsResultStorageAdapterSettingsProvider)
+            IEnumerationValuesResultStorageAdapterSettingsProvider enumerationsResultStorageAdapterSettingsProvider)
             : base(
                   loggerWrapper,
-                  allEnumerationsResultStorageAdapterSettingsProvider)
+                  enumerationsResultStorageAdapterSettingsProvider)
         {
-            this.loggerWrapper = loggerWrapper;
         }
 
         /// <inheritdoc />
-        public async Task<EnumerationValuesResult> GetAllEnumerationValuesResultAsync(
+        public async Task<AllEnumerationValuesResult> GetAllEnumerationValuesResultAsync(CancellationToken cancellationToken)
+        {
+            // Read all rows from table
+            var allMappings = await base.GetEnumerationMappingsAsync(null, cancellationToken);
+            
+            // Get distinct list of enumeration names
+            var enumerationNames = allMappings
+                .Select(row => row.PartitionKey.Split('.')[1])
+                .Distinct()
+                .ToArray();
+            
+            // Build mappings
+            var enumerations = new Dictionary<string, EnumerationValuesResult>();
+            foreach (var enumerationName in enumerationNames)
+            {
+                var values = allMappings
+                    .Where(x => x.PartitionKey.EndsWith(enumerationName, StringComparison.InvariantCulture))
+                    .Select(x => x.RowKey)
+                    .Distinct()
+                    .ToArray();
+                enumerations.Add(enumerationName, new EnumerationValuesResult
+                {
+                    EnumerationValues = values,
+                });
+            }
+            
+            // Let them have it
+            return new AllEnumerationValuesResult
+            {
+                Enumerations = enumerations,
+            };
+        }
+
+        /// <inheritdoc />
+        public async Task<EnumerationValuesResult> GetEnumerationValuesResultAsync(
             string name,
             CancellationToken cancellationToken)
         {

@@ -1,4 +1,4 @@
-﻿namespace Dfe.Spi.Translation.Application.Factories
+namespace Dfe.Spi.Translation.Application.Factories
 {
     using System.Threading;
     using System.Threading.Tasks;
@@ -9,46 +9,46 @@
     using Dfe.Spi.Translation.Application.Definitions.Factories;
     using Dfe.Spi.Translation.Domain.Definitions;
     using Dfe.Spi.Translation.Domain.Models;
-
+    
     /// <summary>
-    /// Implements <see cref="IEnumerationValuesResultCacheManagerFactory" />.
+    /// Implements <see cref="IAllEnumerationValuesResultCacheManagerFactory" />.
     /// </summary>
-    public class EnumerationValuesResultCacheManagerFactory
-        : IEnumerationValuesResultCacheManagerFactory
+    public class AllEnumerationValuesResultCacheManagerFactory
+        : IAllEnumerationValuesResultCacheManagerFactory
     {
-        private readonly IEnumerationValuesResultCache enumerationValuesResultCache;
-        private readonly IEnumerationValuesResultStorageAdapter enumerationValuesResultStorageAdapter;
+        private readonly IAllEnumerationValuesResultCache allEnumerationValuesResultCache;
+        private readonly IEnumerationValuesResultStorageAdapter allEnumerationValuesResultStorageAdapter;
         private readonly ILoggerWrapper loggerWrapper;
 
         /// <summary>
         /// Initialises a new instance of the
         /// <see cref="EnumerationValuesResultCacheManagerFactory" /> class.
         /// </summary>
-        /// <param name="enumerationValuesResultCache">
+        /// <param name="allEnumerationValuesResultCache">
         /// An instance of type <see cref="IEnumerationValuesResultCache" />.
         /// </param>
-        /// <param name="enumerationValuesResultStorageAdapter">
+        /// <param name="allEnumerationValuesResultStorageAdapter">
         /// An instance of type
         /// <see cref="IEnumerationValuesResultStorageAdapter" />.
         /// </param>
         /// <param name="loggerWrapper">
         /// An instance of type <see cref="ILoggerWrapper" />.
         /// </param>
-        public EnumerationValuesResultCacheManagerFactory(
-            IEnumerationValuesResultCache enumerationValuesResultCache,
-            IEnumerationValuesResultStorageAdapter enumerationValuesResultStorageAdapter,
+        public AllEnumerationValuesResultCacheManagerFactory(
+            IAllEnumerationValuesResultCache allEnumerationValuesResultCache,
+            IEnumerationValuesResultStorageAdapter allEnumerationValuesResultStorageAdapter,
             ILoggerWrapper loggerWrapper)
         {
-            this.enumerationValuesResultCache = enumerationValuesResultCache;
-            this.enumerationValuesResultStorageAdapter = enumerationValuesResultStorageAdapter;
+            this.allEnumerationValuesResultCache = allEnumerationValuesResultCache;
+            this.allEnumerationValuesResultStorageAdapter = allEnumerationValuesResultStorageAdapter;
             this.loggerWrapper = loggerWrapper;
         }
-
+        
         /// <inheritdoc />
         public ICacheManager Create()
         {
             CacheManager toReturn = new CacheManager(
-                this.enumerationValuesResultCache,
+                this.allEnumerationValuesResultCache,
                 this.loggerWrapper,
                 this.InitialiseCacheItemAsync);
 
@@ -56,9 +56,7 @@
         }
 
         /// <inheritdoc />
-        public async Task<object> InitialiseCacheItemAsync(
-           string key,
-           CancellationToken cancellationToken)
+        public async Task<object> InitialiseCacheItemAsync(string key, CancellationToken cancellationToken)
         {
             object toReturn = null;
 
@@ -66,10 +64,9 @@
                 $"Looking up all enumeration values from storage with " +
                 $"name \"{key}\"...");
 
-            EnumerationValuesResult allEnumerationsResult =
-                await this.enumerationValuesResultStorageAdapter.GetEnumerationValuesResultAsync(
-                    key,
-                    cancellationToken)
+            AllEnumerationValuesResult allEnumerationsResult =
+                await this.allEnumerationValuesResultStorageAdapter.GetAllEnumerationValuesResultAsync(
+                        cancellationToken)
                     .ConfigureAwait(false);
 
             this.loggerWrapper.Info(

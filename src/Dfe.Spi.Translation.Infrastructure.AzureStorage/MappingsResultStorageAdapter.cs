@@ -39,6 +39,49 @@
             // Nothing.
         }
 
+        
+        /// <inheritdoc />
+        public async Task<AdapterMappingsResult> GetAdapterMappingsResultAsync(
+            string adapterName, 
+            CancellationToken cancellationToken)
+        {
+            // Check the request
+            if (adapterName == null)
+            {
+                throw new ArgumentNullException(nameof(adapterName));
+            }
+            
+            // Read all rows from table
+            var allMappings = await base.GetEnumerationMappingsAsync(null, cancellationToken);
+            
+            // Get mappings for specified adapter
+            var adapterMappings = allMappings
+                .Where(row => row.PartitionKey.StartsWith(adapterName, StringComparison.InvariantCultureIgnoreCase))
+                .Select(row =>
+                    new
+                    {
+                        EnumerationName = row.PartitionKey.Substring(adapterName.Length + 1),
+                        EnumerationValue = row.RowKey,
+                        Mappings = MappingToArray(row.Mapping),
+                    })
+                .GroupBy(row => row.EnumerationName)
+                .ToDictionary(
+                    projectedRow => projectedRow.Key,
+                    projectedRow =>
+                        new MappingsResult
+                        {
+                            Mappings = projectedRow.ToDictionary(
+                                value => value.EnumerationValue,
+                                value => value.Mappings),
+                        });
+
+            // Let them have it
+            return new AdapterMappingsResult
+            {
+                EnumerationMappings = adapterMappings,
+            };
+        }
+
         /// <inheritdoc />
         public async Task<MappingsResult> GetMappingsResultAsync(
             EnumerationKey enumerationsKey,
