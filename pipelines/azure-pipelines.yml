@@ -17,9 +17,9 @@ variables:
 
 steps:
   - task: NuGetToolInstaller@1
-    displayName: 'Use NuGet 4.9.1'
+    displayName: 'Use NuGet 6.4.0'
     inputs:
-      versionSpec: '4.9.1'
+      versionSpec: '6.4.0'
 
   - task: UseDotNet@2
     displayName: 'Use dotnet 6'
