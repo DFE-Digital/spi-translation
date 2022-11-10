@@ -21,6 +21,11 @@ steps:
     inputs:
       versionSpec: '4.9.1'
 
+  - task: UseDotNet@2
+    displayName: 'Use dotnet 6'
+    inputs:
+     version: '6.0.x'
+
   - task: NuGetCommand@2
     displayName: 'Restore Public & Private NuGet Packages'
     inputs:
